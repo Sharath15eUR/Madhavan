@@ -1,0 +1,4 @@
+total 0
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:06 f1.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f2.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f3.txt

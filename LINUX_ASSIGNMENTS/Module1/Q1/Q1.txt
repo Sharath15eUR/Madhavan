@@ -1,0 +1,13 @@
+
+1. Create a file and add executable permission to all users (user,group and others)
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ ls -l
+total 0
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 10:09 Q1.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ chmod g+x,o+x,u+x Q1.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ ls -l
+total 0
+-rwxrwxr-x 1 maddy maddy 0 Jan 28 10:09 Q1.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ 
