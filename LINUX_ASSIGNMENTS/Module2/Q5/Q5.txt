@@ -1,0 +1,9 @@
+
+5. Use the networking tool command and print the available gateway in a sorted manner
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q5$ route -n | awk 'NR>2 {print $2}' | sort
+0.0.0.0
+0.0.0.0
+192.168.73.233

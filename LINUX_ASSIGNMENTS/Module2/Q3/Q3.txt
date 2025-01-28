@@ -1,0 +1,28 @@
+
+3. use the appropriate command to search for lines containing the word "ERROR" in a given log file but exclude lines containing "DEBUG". Save the results to a file named filtered_log.txt
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q3$ cat logfile.txt
+DEBUG: Starting the application initialization.
+ERROR: Unable to connect to the database.
+INFO: User 'admin' logged in successfully.
+DEBUG: Fetching configuration settings from the server.
+ERROR: DEBUG - Configuration settings could not be applied.
+INFO: Scheduled job 'backup' completed successfully.
+DEBUG: Connection to server timed out. Retrying...
+ERROR: Failed to fetch data from API endpoint '/users'.
+INFO: Maintenance mode activated.
+ERROR: DEBUG - Query execution failed due to a syntax error.
+DEBUG: Reloading application modules.
+ERROR: Missing required parameter in the request.
+INFO: Shutting down the system gracefully.
+DEBUG: Closing unused network connections.
+ERROR: DEBUG - Unexpected server response received.
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q3$ touch filtered_log.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q3$ awk -F: '$0 ~ /^ERROR/ && $2 !~ /^ DEBUG/ {print $0}' logfile.txt > filtered_log.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q3$ cat filtered_log.txt
+ERROR: Unable to connect to the database.
+ERROR: Failed to fetch data from API endpoint '/users'.
+ERROR: Missing required parameter in the request.
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module2/Q3$ touch Q3.txt
