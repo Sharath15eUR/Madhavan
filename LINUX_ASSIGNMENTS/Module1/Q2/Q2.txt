@@ -1,0 +1,13 @@
+2. Create a file and remove write permission to group user alone
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ touch Q2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ ls
+Q1.txt  Q2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ ls -l Q2.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 10:21 Q2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ chmod g-w Q2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ ls -l Q2.txt
+-rw-r--r-- 1 maddy maddy 0 Jan 28 10:21 Q2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX ASSIGNMENTS/Module1$ 

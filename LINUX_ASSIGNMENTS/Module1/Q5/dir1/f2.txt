@@ -1,0 +1,19 @@
+
+5. Create 3 files inside dir1 and redirect the output of list command with sorted by timestamp of the files to the file 
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1$ ls
+f1.txt  f2.txt  f3.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1$ ls -lt
+total 0
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f1.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f2.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f3.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1$ ls -lt > f1.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1$ cat f1.txt
+total 0
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:06 f1.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f2.txt
+-rw-rw-r-- 1 maddy maddy 0 Jan 28 11:04 f3.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1$ 
