@@ -1,0 +1,22 @@
+
+1. For the given input.txt , write a bash script which should take the file as input and have to go through it line by line and need to generate an output file (here: output.txt) with listiings of given parameters fetched from the input file.   (parameters are frame.type , wfan.fc.type and wlan.fc.subtype)
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module4$ ls
+input.txt  script.sh
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module4$ ./script.sh "$PWD/input.txt"
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module4$ ls
+input.txt  output.txt  script.sh
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module4$ cat output.txt
+
+"frame.time": "Dec 31, 2024 12:50:25.890970000 India Standard Time",
+"wlan.fc.type": "0",
+"wlan.fc.subtype": "8",
+"frame.time": "Dec 31, 2024 12:50:25.892357000 India Standard Time",
+"wlan.fc.type": "0",
+"wlan.fc.subtype": "8",
+
+
+
+(SINCE , WHOLE FILE TAKES LONG TIME TO PROCESS , FOR OUTPUT DEMONSTRATION , FIRST 3000 LINES OF INPUT DOCUMENT WAS CONSIDERED)
