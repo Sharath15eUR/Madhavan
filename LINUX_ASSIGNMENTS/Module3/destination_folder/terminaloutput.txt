@@ -1,0 +1,40 @@
+
+1. Automating file backup and reporting to the system by creating a shell script "backup_manager.sh" and performing the required actions
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ls Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1
+f1.txt  f2.txt  f3.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ls Desktop/LINUX_ASSIGNMENTS/Module3
+backup_manager.sh
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ cd Desktop/LINUX_ASSIGNMENTS/Module3
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module3$ ./backup_manager.sh "/home/maddy/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1" "$PWD" ".txt"
+
+Source Directory exists. Proceeding to check whether files and/or subdirectories exist or not
+
+Files or subdirectories exist
+
+Backup directory is ready
+
+Files going to backed up from given source to given destination directory
+149	f1.txt
+885	f2.txt
+0	f3.txt
+
+File f1.txt does not exist in destination folder so creating copy of it in destination folder
+File f2.txt does not exist in destination folder so creating copy of it in destination folder
+File f3.txt does not exist in destination folder so creating copy of it in destination folder
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module3$ cd
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ls Desktop/LINUX_ASSIGNMENTS/Module3
+backup_manager.sh  backup_report.log  f1.txt  f2.txt  f3.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ cd Desktop/LINUX_ASSIGNMENTS/Module3
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module3$ cat backup_report.log
+Files that are backed up from /home/maddy/Desktop/LINUX_ASSIGNMENTS/Module1/Q5/dir1 are as follows : 
+f1.txt
+f2.txt
+f3.txt
+Total files backed up is 3
+Total Size got backed up is 1034
+Path to the backup directory is : /home/maddy/Desktop/LINUX_ASSIGNMENTS/Module3
