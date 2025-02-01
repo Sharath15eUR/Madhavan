@@ -1,0 +1,65 @@
+
+1. Create a bash script 'file_analyzer.sh' to demonstrate recursive functions , redirection and error handling , here document and here string , special parameters, regular expressions , getopts
+
+Ans : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ls
+dir1  dir2  file_analyzer.sh
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ls dir1
+madhavan.txt  nesteddir
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ cat dir1/madhavan.txt
+tce
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ls dir1/nesteddir
+ff.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ cat dir1/nesteddir/ff.txt
+nested content
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -d "nesteddir" -k "content"
+/home/maddy/Desktop/LINUX_ASSIGNMENTS/Module5/dir1/nesteddir
+Keyword found
+
+
+Feedback on running this script:
+Script name : ./file_analyzer.sh
+Total number of arguments passed : 4
+Exit Status Code : 0
+All arguments passed in command line : -d nesteddir -k content
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ cat errorfile.log
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -d "nesteddir" -k "cont"
+/home/maddy/Desktop/LINUX_ASSIGNMENTS/Module5/dir1/nesteddir
+Keyword not found
+
+Feedback on running this script:
+Script name : ./file_analyzer.sh
+Total number of arguments passed : 4
+Exit Status Code : 0
+All arguments passed in command line : -d nesteddir -k cont
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -d "dir1" -k "tce"
+/home/maddy/Desktop/LINUX_ASSIGNMENTS/Module5/dir1
+Keyword found
+
+
+Feedback on running this script:
+Script name : ./file_analyzer.sh
+Total number of arguments passed : 4
+Exit Status Code : 0
+All arguments passed in command line : -d dir1 -k tce
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -d "di" -k "tce"
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ cat errorfile.log
+Given directory name is not available
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -f "ff.txt" -k "nested"
+ Keyword Found
+
+
+Feedback on running this script:
+Script name : ./file_analyzer.sh
+Total number of arguments passed : 4
+Exit Status Code : 0
+All arguments passed in command line : -f ff.txt -k nested
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ ./file_analyzer.sh -g "ff.txt" -k "nested" 2> errorfile.log
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop/LINUX_ASSIGNMENTS/Module5$ cat errorfile.log
+Invalid Option
+
+
+
+
