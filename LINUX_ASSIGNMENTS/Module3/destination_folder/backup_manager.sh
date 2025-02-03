@@ -17,7 +17,7 @@ echo ""
 
 if [[ -z "$source" ]] || [[ -z "$dest" ]] || [[ -z "$extension" ]]; then
 
-	echo "All three required command line arguments not received " >&2
+	echo "All three required command line arguments not received " 
 
 	exit 1
 
@@ -39,7 +39,7 @@ if [[ -d "$source" ]]; then
 
 	else
 
-		echo "No files exist in the given source directory" >&2
+		echo "No files exist in the given source directory" 
 
 		exit 1
 
@@ -47,7 +47,7 @@ if [[ -d "$source" ]]; then
 
 else
 
-	echo "Source directory does not exist." >&2
+	echo "Source directory does not exist." 
 
 fi
 
@@ -55,7 +55,7 @@ fi
 
 if ! [[ -d "$dest" ]]; then
 
-	mkdir -p "$dest" || echo "Attempt to create backup directory provided failed...." >&2
+	mkdir -p "$dest" || echo "Attempt to create backup directory provided failed...." 
 
 else
 
