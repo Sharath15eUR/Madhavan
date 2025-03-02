@@ -1,0 +1,70 @@
+IFCONFIG COMMAND : 
+
+	ifconfig command stands for Interface configuration which helps in view the statistics and other network related information about that particular interface etc. 
+	
+
+COMMANDS : 
+
+1. Using ifconfig without any options , shows information about each and every network interface possible. 
+
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ifconfig
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 2383  bytes 208708 (208.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2383  bytes 208708 (208.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.90.115  netmask 255.255.255.0  broadcast 192.168.90.255
+        inet6 2409:40f4:101d:c1b3:312f:5046:6601:1d56  prefixlen 64  scopeid 0x0<global>
+        inet6 2409:40f4:101d:c1b3:d2ad:8d4:5793:58c1  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::1861:3dd4:4e0a:5362  prefixlen 64  scopeid 0x20<link>
+        ether 90:65:84:48:29:89  txqueuelen 1000  (Ethernet)
+        RX packets 24556  bytes 21138620 (21.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13250  bytes 6143110 (6.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+(Here, for each interface,  flags, Maximum Transmission Unit , ipv4, ipv6 , MAC address , Tx ,Tx packets etc will be provided)
+
+
+2. Using ifconfig with particular interface name will show the statistics for that interface only as follows : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ifconfig wlp0s20f3
+wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.90.115  netmask 255.255.255.0  broadcast 192.168.90.255
+        inet6 2409:40f4:101d:c1b3:312f:5046:6601:1d56  prefixlen 64  scopeid 0x0<global>
+        inet6 2409:40f4:101d:c1b3:d2ad:8d4:5793:58c1  prefixlen 64  scopeid 0x0<global>
+        inet6 fe80::1861:3dd4:4e0a:5362  prefixlen 64  scopeid 0x20<link>
+        ether 90:65:84:48:29:89  txqueuelen 1000  (Ethernet)
+        RX packets 24613  bytes 21152230 (21.1 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 13310  bytes 6153596 (6.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+3. To manually set the link up or down (requires sudo access)
+
+sudo ifconfig wlp0s20f3 <up/down>
+
+
+4. To assign IP address and subnet mask for particular network interface when connected to internet (requires sudo access)
+
+sudo ifconfig wlp0s20f3 192.168.2.1 netmask 255.255.255.0
+
+5. To change the MAC address of any interface (requires link to be down first and sudo access)
+
+sudo ifconfig eth0 hw ether <new MAC>
+
+6. To enable the link to be sniffed (promiscious mode) :
+
+sudo ifconfig eth0 promisc
+
+7. To change Maximum Transmission Unit of any interface from default value (required for fragmentation if frame size exceeds MTU with frame ID) : 
+
+sudo ifconfig eth0 mtu 1400
