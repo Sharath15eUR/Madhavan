@@ -1,0 +1,92 @@
+WIRESHARK FILTERS : 
+
+	Wireshark is the packet sniffing application which enables users sniff via almost all possible network interfaces and understand its internals meanwhile protecting the privacy or      security of information being transmitted.  There are two types of filters that can be applied in wireshark . They are as follows : 
+
+	1. WIRESHARK CAPTURE FILTERS :
+
+		This can be applied before actual packet capturing to let wireshark know in prior what types of packets to be sniffed from possible network interface and displays the captured packets as per applied filters. It works as per BERKELEY PACKET FILTER (BPF) . Below are the examples of BPF syntax based capture filters:
+
+		1. To capture only tcp packets -> tcp
+
+		2. To capture only udp packets -> udp
+
+		3. To capture only icmp packets -> icmp (Useful in tracing ping output packets)
+
+		4. To capture specific port -> port 80 -> http here
+
+		5. To capture packets from specific IP -> src host 192.168.1.1
+
+		6. To capture packets to specific IP -> dst host 192.168.1.2
+
+		7. To capture packets involving given IP either as src or dest -> host 192.168.1.2
+
+		8. To capture packets from a specified subnet -> net 192.168.1.0/24 (Syntax : net <Network ID>/<Subnet mask>)
+
+		9. To capture packets involving given MAC -> ether host <MAC ADDRESS>
+
+		10. To capture packets having transaction between two given IP's -> host <IP1> && host <IP2>
+
+		11. To capture packets belonging to the given range of ports -> portrange <p1>-<p2>
+
+
+	
+
+	2. WIRESHARK DISPLAY FILTERS :
+
+		This can be applied once after capturing all possible packets from the currently active network interface just to view the results. The syntax followed is wireshark's own syntax. Some example filters are shown below : 
+
+		1. To capture packets related to any protocols like tcp, udp, dns, arp, dhcp , tls ,ssl, ssh, smtp etc. use following syntax -> <protocol name>
+
+		2. To capture packets from specific IP -> ip.src == <IP>
+
+		3. To capture packets to specific IP -> ip.dst == <IP>
+
+		4. To capture packets from/to given IP -> ip.addr == <IP>
+
+		5. To capture packets involving the two given IP's -> ip.addr == <IP> && ip.addr == <IP>
+
+		6. To capture packets from any subnet -> ip.src == <Network ID>/<Subnet Mask>
+
+		7. To capture packets from/to specific MAC -> ether.<src/dst> == <MAC>  
+
+		8. To capture packets involving any port (find whether the port is tcp port or udp port) -> <tcp/udp>.<src/dst><port>
+
+		9. To capture packets based on length -> frame.len </==/> <value>
+
+		10. To capture packets involving tcp packets -> tcp.flags.<syn/ack/fin/reset/push/urg> == 1
+
+-------------------------------------------------------------------------------------------------------------------------
+
+
+CISCO PACKET TRACER FILTERS : 
+
+	Cisco packet tracer doesn't allow users to give any syntax or flexible filters as like wireshark. But, it offers prebuilt options only for protocols names to select from as filters in sniffer captured packets like ARP, ICMP, TCP etc.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+TCPDUMP PACKET FILTERS : 
+
+	General syntax : tcpdump <options> <filters>
+
+	Below are few example filters for tcpdump command :
+
+		1. tcpdump -i eth0 <tcp/udp/arp/icmp>
+
+		2. tcpdump <src/dst> port <value>	
+
+		3. tcpdump portrange <p1>-<p2>
+
+		4. tcpdump ether <src/dst> <MAC>
+
+		5. tcpdump 'tcp[tcpflags] & tcp-<syn/fin/ack/push/urg> != 0'
+
+		6. tcpdump greater 1000 (packet size greater than 1000 bytes)
+
+		7. tcpdump less 1000
+
+		8. tcpdump net <network id>/<subnet mask>
+
+		9. tcpdump host <src/dst> <IP>
+
+		10. tcpdump host <IP> and (port 443 or port 443) -> combining filters

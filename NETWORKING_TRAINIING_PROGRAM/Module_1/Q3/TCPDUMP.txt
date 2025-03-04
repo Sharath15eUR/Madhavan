@@ -1,0 +1,1314 @@
+TCPDUMP is the packet sniffing tool like wireshark but in the form of command and not in the GUI. It comes with flexible options to work with as like filters , packet limiters , interface selectors
+, exporting and importing wireshark packet capture files etc. 
+
+1. INSTALLING TCPDUMP : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sudo apt install tcpdump
+[sudo] password for maddy: 
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+tcpdump is already the newest version (4.99.1-3ubuntu0.2).
+0 upgraded, 0 newly installed, 0 to remove and 205 not upgraded.
+
+
+2. It requires sudo access to use and sniff using this command. If just tcpdump without any options used, it sniffs from available interface as follows : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sudo tcpdump
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on wlp0s20f3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+20:21:51.826629 IP maddy-IdeaPad-Slim-3-15IAH8.53163 > _gateway.domain: 8846+ AAAA? clientservices.googleapis.com. (47)
+20:21:51.826726 IP maddy-IdeaPad-Slim-3-15IAH8.53165 > _gateway.domain: 13778+ A? clientservices.googleapis.com. (47)
+20:21:51.826791 IP maddy-IdeaPad-Slim-3-15IAH8.59568 > _gateway.domain: 15350+ Type65? clientservices.googleapis.com. (47)
+20:21:51.854562 IP maddy-IdeaPad-Slim-3-15IAH8.45439 > _gateway.domain: 50953+ AAAA? accounts.google.com. (37)
+20:21:51.854656 IP maddy-IdeaPad-Slim-3-15IAH8.46449 > _gateway.domain: 43534+ A? accounts.google.com. (37)
+20:21:51.854710 IP maddy-IdeaPad-Slim-3-15IAH8.36538 > _gateway.domain: 57992+ Type65? accounts.google.com. (37)
+20:21:51.856095 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.53163: 8846 1/0/0 AAAA 2404:6800:4007:82c::2003 (75)
+20:21:51.861812 IP maddy-IdeaPad-Slim-3-15IAH8.58195 > _gateway.domain: 10096+ AAAA? www.google.com. (32)
+20:21:51.864792 IP maddy-IdeaPad-Slim-3-15IAH8.46817 > _gateway.domain: 13469+ AAAA? www.googleapis.com. (36)
+20:21:51.864913 IP maddy-IdeaPad-Slim-3-15IAH8.59654 > _gateway.domain: 55063+ A? www.googleapis.com. (36)
+20:21:51.865001 IP maddy-IdeaPad-Slim-3-15IAH8.51335 > _gateway.domain: 15406+ Type65? www.googleapis.com. (36)
+20:21:51.868036 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.59568: 15350 0/1/0 (104)
+20:21:51.869829 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.53165: 13778 1/0/0 A 142.250.207.195 (63)
+20:21:51.870199 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [S], seq 670078128, win 64320, options [mss 1340,sackOK,TS val 3517818050 ecr 0,nop,wscale 7], length 0
+20:21:51.886096 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.46449: 43534 1/0/0 A 172.217.194.84 (53)
+20:21:51.886490 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.36538: 57992 0/1/0 (87)
+20:21:51.887584 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.51335: 15406 0/1/0 (93)
+20:21:51.889981 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.45439: 50953 1/0/0 AAAA 2404:6800:4003:c04::54 (65)
+20:21:51.890339 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.58195: 10096 1/0/0 AAAA 2404:6800:4002:81a::2004 (60)
+20:21:51.891138 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1230
+20:21:51.891205 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1230
+20:21:51.891957 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:51.891999 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:51.892635 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.46817: 13469 4/0/0 AAAA 2404:6800:4002:813::200a, AAAA 2404:6800:4002:80d::200a, AAAA 2404:6800:4002:80f::200a, AAAA 2404:6800:4002:812::200a (148)
+20:21:51.895190 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.59654: 55063 16/0/0 A 142.250.77.202, A 142.250.77.234, A 142.250.182.170, A 142.250.192.170, A 142.250.192.202, A 142.250.192.234, A 142.250.193.10, A 142.250.194.138, A 142.250.194.170, A 142.250.194.202, A 142.250.194.234, A 142.250.195.10, A 142.250.207.202, A 142.250.207.234, A 172.217.167.202, A 216.58.196.106 (292)
+20:21:51.896466 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:51.896504 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:51.900283 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [S.], seq 154777163, ack 670078129, win 65535, options [mss 1300,sackOK,TS val 3715240151 ecr 3517818050,nop,wscale 8], length 0
+20:21:51.900320 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 3517818081 ecr 3715240151], length 0
+20:21:51.900722 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 1:1836, ack 1, win 503, options [nop,nop,TS val 3517818081 ecr 3715240151], length 1835
+20:21:51.900821 IP maddy-IdeaPad-Slim-3-15IAH8.51459 > _gateway.domain: 36506+ PTR? 136.57.168.192.in-addr.arpa. (45)
+20:21:51.931091 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [S], seq 3395544729, win 64320, options [mss 1340,sackOK,TS val 23657020 ecr 0,nop,wscale 7], length 0
+20:21:51.955354 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 40
+20:21:51.959103 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.959105 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.959347 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [S], seq 81674839, win 64320, options [mss 1340,sackOK,TS val 751696634 ecr 0,nop,wscale 7], length 0
+20:21:51.960655 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1230
+20:21:51.961392 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.961393 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.962932 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1230
+20:21:51.970263 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 1289:1836, ack 1, win 503, options [nop,nop,TS val 3517818151 ecr 3715240151], length 547
+20:21:51.971246 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 3715240218 ecr 3517818081], length 0
+20:21:51.971668 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 40
+20:21:51.971674 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.971675 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:51.971898 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 39
+20:21:51.972520 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.51459: 36506 NXDomain* 0/1/0 (104)
+20:21:51.972963 IP maddy-IdeaPad-Slim-3-15IAH8.49261 > _gateway.domain: 2895+ PTR? 115.57.168.192.in-addr.arpa. (45)
+20:21:51.974001 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 1836, win 1048, options [nop,nop,TS val 3715240225 ecr 3517818081], length 0
+20:21:51.976083 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:51.976084 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:51.976205 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:51.976681 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:51.977476 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 40
+20:21:51.983080 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:51.983081 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:51.983082 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:51.983729 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:51.990567 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [S], seq 4103805727, win 64320, options [mss 1340,sackOK,TS val 1376955250 ecr 0,nop,wscale 7], length 0
+20:21:52.002135 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.49261: 2895 NXDomain* 0/1/0 (104)
+20:21:52.004012 IP maddy-IdeaPad-Slim-3-15IAH8.58206 > _gateway.domain: 31180+ PTR? 3.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.c.2.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.005258 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], seq 1:1209, ack 1836, win 1048, options [nop,nop,TS val 3715240257 ecr 3517818081], length 1208
+20:21:52.005280 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 1209, win 494, options [nop,nop,TS val 3517818186 ecr 3715240257], length 0
+20:21:52.005372 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 1209:2417, ack 1836, win 1048, options [nop,nop,TS val 3715240257 ecr 3517818081], length 1208
+20:21:52.005375 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 3517818186 ecr 3715240257], length 0
+20:21:52.005518 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], seq 2417:3625, ack 1836, win 1048, options [nop,nop,TS val 3715240257 ecr 3517818081], length 1208
+20:21:52.005519 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 3517818186 ecr 3715240257], length 0
+20:21:52.007343 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 3625:4460, ack 1836, win 1048, options [nop,nop,TS val 3715240257 ecr 3517818081], length 835
+20:21:52.007351 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 4460, win 470, options [nop,nop,TS val 3517818188 ecr 3715240257], length 0
+20:21:52.009448 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 1836, win 1048, options [nop,nop,TS val 3715240260 ecr 3517818151,nop,nop,sack 1 {1289:1836}], length 0
+20:21:52.011663 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [S.], seq 3651367691, ack 3395544730, win 65535, options [mss 1300,sackOK,TS val 567819342 ecr 23657020,nop,wscale 8], length 0
+20:21:52.011697 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 23657101 ecr 567819342], length 0
+20:21:52.012123 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [P.], seq 1:1725, ack 1, win 503, options [nop,nop,TS val 23657101 ecr 567819342], length 1724
+20:21:52.012631 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 1836:1910, ack 4460, win 470, options [nop,nop,TS val 3517818193 ecr 3715240260], length 74
+20:21:52.012830 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 1910:2002, ack 4460, win 470, options [nop,nop,TS val 3517818193 ecr 3715240260], length 92
+20:21:52.013005 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 2002:2360, ack 4460, win 470, options [nop,nop,TS val 3517818193 ecr 3715240260], length 358
+20:21:52.020181 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 37
+20:21:52.025477 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [S.], seq 1413813249, ack 81674840, win 65535, options [mss 1300,sackOK,TS val 3909718252 ecr 751696634,nop,wscale 8], length 0
+20:21:52.025502 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 751696700 ecr 3909718252], length 0
+20:21:52.025869 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [P.], seq 1:1793, ack 1, win 503, options [nop,nop,TS val 751696700 ecr 3909718252], length 1792
+20:21:52.034704 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 876
+20:21:52.036888 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 89
+20:21:52.037062 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 74
+20:21:52.037533 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1226
+20:21:52.037557 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 1230
+20:21:52.037634 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 378
+20:21:52.037646 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 71
+20:21:52.043438 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.043439 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.043440 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.043701 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 39
+20:21:52.044906 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 40
+20:21:52.046309 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:52.046310 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:52.046311 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 1230
+20:21:52.046625 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 39
+20:21:52.047056 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.58206: 31180 1/0/0 PTR maa03s47-in-x03.1e100.net. (129)
+20:21:52.047852 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 40
+20:21:52.048355 IP maddy-IdeaPad-Slim-3-15IAH8.54332 > _gateway.domain: 28699+ PTR? 6.a.3.f.b.8.6.6.3.0.5.c.8.b.2.8.7.1.6.4.7.2.0.1.4.f.0.4.9.0.4.2.ip6.arpa. (90)
+20:21:52.049555 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 909
+20:21:52.051309 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 40
+20:21:52.051322 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 245
+20:21:52.051555 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [S.], seq 1880493130, ack 4103805728, win 65535, options [mss 1300,sackOK,TS val 3689133959 ecr 1376955250,nop,wscale 8], length 0
+20:21:52.051588 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 1376955311 ecr 3689133959], length 0
+20:21:52.051801 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 37
+20:21:52.052527 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [P.], seq 1:1826, ack 1, win 503, options [nop,nop,TS val 1376955312 ecr 3689133959], length 1825
+20:21:52.052652 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 40
+20:21:52.053677 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 83
+20:21:52.053823 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 72
+20:21:52.054634 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 83
+20:21:52.054744 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 73
+20:21:52.055020 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 1226
+20:21:52.055029 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 1061
+20:21:52.055114 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 92
+20:21:52.055160 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 112
+20:21:52.055208 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 87
+20:21:52.055326 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 568
+20:21:52.055390 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 354
+20:21:52.064151 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 1910, win 1048, options [nop,nop,TS val 3715240316 ecr 3517818193], length 0
+20:21:52.065336 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 2002, win 1048, options [nop,nop,TS val 3715240316 ecr 3517818193], length 0
+20:21:52.065338 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 2360, win 1047, options [nop,nop,TS val 3715240316 ecr 3517818193], length 0
+20:21:52.067225 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 4460:5448, ack 2360, win 1047, options [nop,nop,TS val 3715240318 ecr 3517818193], length 988
+20:21:52.067494 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 2360:2391, ack 5448, win 463, options [nop,nop,TS val 3517818248 ecr 3715240318], length 31
+20:21:52.070126 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 5448:5479, ack 2360, win 1047, options [nop,nop,TS val 3715240322 ecr 3517818193], length 31
+20:21:52.074986 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.54332: 28699 NXDomain 0/1/0 (178)
+20:21:52.077095 IP maddy-IdeaPad-Slim-3-15IAH8.49820 > _gateway.domain: 26741+ PTR? 4.5.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.0.c.0.3.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.110377 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 5479, win 463, options [nop,nop,TS val 3517818291 ecr 3715240322], length 0
+20:21:52.113491 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 2391, win 1047, options [nop,nop,TS val 3715240353 ecr 3517818248], length 0
+20:21:52.113782 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 883
+20:21:52.113798 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 567819426 ecr 23657101], length 0
+20:21:52.113800 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [.], ack 1725, win 1049, options [nop,nop,TS val 567819432 ecr 23657101], length 0
+20:21:52.113813 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 953
+20:21:52.113907 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 3909718334 ecr 751696700], length 0
+20:21:52.113908 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [.], ack 1793, win 1050, options [nop,nop,TS val 3909718335 ecr 751696700], length 0
+20:21:52.113966 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 121
+20:21:52.113967 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 23
+20:21:52.114126 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 171
+20:21:52.114272 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 33
+20:21:52.114319 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 33
+20:21:52.115301 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 23
+20:21:52.117355 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 41
+20:21:52.119339 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 3689134028 ecr 1376955312], length 0
+20:21:52.121330 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [.], ack 1826, win 1048, options [nop,nop,TS val 3689134030 ecr 1376955312], length 0
+20:21:52.128436 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [P.], seq 1:2417, ack 1826, win 1048, options [nop,nop,TS val 3689134031 ecr 1376955312], length 2416
+20:21:52.128462 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 1376955388 ecr 3689134031], length 0
+20:21:52.128492 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [.], seq 2417:3625, ack 1826, win 1048, options [nop,nop,TS val 3689134031 ecr 1376955312], length 1208
+20:21:52.128498 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 1376955388 ecr 3689134031], length 0
+20:21:52.128570 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [P.], seq 3625:4833, ack 1826, win 1048, options [nop,nop,TS val 3689134031 ecr 1376955312], length 1208
+20:21:52.128571 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [P.], seq 4833:5390, ack 1826, win 1048, options [nop,nop,TS val 3689134031 ecr 1376955312], length 557
+20:21:52.128577 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 1376955388 ecr 3689134031], length 0
+20:21:52.128590 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 5390, win 463, options [nop,nop,TS val 1376955388 ecr 3689134031], length 0
+20:21:52.131542 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1000
+20:21:52.131585 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 121
+20:21:52.131585 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 23
+20:21:52.131716 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 28
+20:21:52.131851 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 33
+20:21:52.131972 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 33
+20:21:52.132004 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 950
+20:21:52.132006 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 121
+20:21:52.132006 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 27
+20:21:52.132166 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 33
+20:21:52.132567 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.49820: 26741 1/0/0 PTR si-in-f84.1e100.net. (123)
+20:21:52.132608 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 31
+20:21:52.133288 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [P.], seq 1826:1900, ack 5390, win 463, options [nop,nop,TS val 1376955393 ecr 3689134031], length 74
+20:21:52.133393 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1226
+20:21:52.133663 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 28
+20:21:52.134219 IP maddy-IdeaPad-Slim-3-15IAH8.33822 > _gateway.domain: 45521+ PTR? 4.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.a.1.8.0.2.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.141432 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 1230
+20:21:52.141434 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 90
+20:21:52.141998 IP6 maddy-IdeaPad-Slim-3-15IAH8.60646 > si-in-f84.1e100.net.https: UDP, length 37
+20:21:52.147468 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 48
+20:21:52.157396 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 28
+20:21:52.157612 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 31
+20:21:52.158052 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.33822: 45521 1/0/0 PTR del11s15-in-x04.1e100.net. (129)
+20:21:52.160265 IP maddy-IdeaPad-Slim-3-15IAH8.37548 > _gateway.domain: 10888+ PTR? a.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.3.1.8.0.2.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.172604 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [P.], seq 1:2417, ack 1793, win 1050, options [nop,nop,TS val 3909718399 ecr 751696700], length 2416
+20:21:52.172606 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [.], seq 2417:3625, ack 1793, win 1050, options [nop,nop,TS val 3909718399 ecr 751696700], length 1208
+20:21:52.172654 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 751696847 ecr 3909718399], length 0
+20:21:52.172700 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 751696847 ecr 3909718399], length 0
+20:21:52.173465 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [P.], seq 3625:4833, ack 1793, win 1050, options [nop,nop,TS val 3909718399 ecr 751696700], length 1208
+20:21:52.173467 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [P.], seq 4833:5750, ack 1793, win 1050, options [nop,nop,TS val 3909718399 ecr 751696700], length 917
+20:21:52.173507 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 751696848 ecr 3909718399], length 0
+20:21:52.173550 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 5750, win 460, options [nop,nop,TS val 751696848 ecr 3909718399], length 0
+20:21:52.174455 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [P.], seq 1793:1867, ack 5750, win 460, options [nop,nop,TS val 751696849 ecr 3909718399], length 74
+20:21:52.185889 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 25
+20:21:52.186361 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.37548: 10888 1/0/0 PTR del11s08-in-x0a.1e100.net. (129)
+20:21:52.197606 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [P.], seq 1:2417, ack 1725, win 1049, options [nop,nop,TS val 567819528 ecr 23657101], length 2416
+20:21:52.197608 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [.], seq 2417:3625, ack 1725, win 1049, options [nop,nop,TS val 567819528 ecr 23657101], length 1208
+20:21:52.197649 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 23657287 ecr 567819528], length 0
+20:21:52.197685 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 23657287 ecr 567819528], length 0
+20:21:52.199374 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60646: UDP, length 25
+20:21:52.199383 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [P.], seq 5390:6358, ack 1900, win 1048, options [nop,nop,TS val 3689134108 ecr 1376955393], length 968
+20:21:52.199640 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [P.], seq 3625:4833, ack 1725, win 1049, options [nop,nop,TS val 567819528 ecr 23657101], length 1208
+20:21:52.199641 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [P.], seq 4833:5381, ack 1725, win 1049, options [nop,nop,TS val 567819528 ecr 23657101], length 548
+20:21:52.199671 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 23657289 ecr 567819528], length 0
+20:21:52.199719 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [.], ack 5381, win 463, options [nop,nop,TS val 23657289 ecr 567819528], length 0
+20:21:52.202973 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [P.], seq 1725:1799, ack 5381, win 463, options [nop,nop,TS val 23657292 ecr 567819528], length 74
+20:21:52.214450 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 28
+20:21:52.221203 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 679
+20:21:52.222124 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 214
+20:21:52.223003 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 35
+20:21:52.224738 IP maddy-IdeaPad-Slim-3-15IAH8.39310 > _gateway.domain: 44263+ AAAA? memex-pa.googleapis.com. (41)
+20:21:52.224828 IP maddy-IdeaPad-Slim-3-15IAH8.43901 > _gateway.domain: 57348+ A? memex-pa.googleapis.com. (41)
+20:21:52.224883 IP maddy-IdeaPad-Slim-3-15IAH8.56957 > _gateway.domain: 56755+ Type65? memex-pa.googleapis.com. (41)
+20:21:52.234475 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 791
+20:21:52.234836 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:52.235345 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 30
+20:21:52.240287 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 6358, win 456, options [nop,nop,TS val 1376955500 ecr 3689134108], length 0
+20:21:52.247993 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.43901: 57348 16/0/0 A 142.250.206.138, A 142.250.206.170, A 142.250.194.10, A 142.250.194.42, A 142.250.194.74, A 142.250.194.106, A 142.250.194.138, A 142.250.194.170, A 142.250.194.202, A 142.250.194.234, A 142.250.195.10, A 142.250.207.202, A 142.250.207.234, A 142.250.193.202, A 142.250.193.234, A 142.250.206.106 (297)
+20:21:52.248274 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [.], ack 1867, win 1050, options [nop,nop,TS val 3909718476 ecr 751696849], length 0
+20:21:52.248297 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1226
+20:21:52.248298 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 370
+20:21:52.248723 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:52.249561 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [P.], seq 5750:6716, ack 1867, win 1050, options [nop,nop,TS val 3909718476 ecr 751696849], length 966
+20:21:52.251396 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 25
+20:21:52.251397 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 265
+20:21:52.251530 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.254441 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.39310: 44263 4/0/0 AAAA 2404:6800:4002:813::200a, AAAA 2404:6800:4002:80f::200a, AAAA 2404:6800:4002:811::200a, AAAA 2404:6800:4002:812::200a (153)
+20:21:52.257366 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56957: 56755 0/1/0 (98)
+20:21:52.258277 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.258312 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.272723 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1226
+20:21:52.272725 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.272726 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [.], ack 1799, win 1049, options [nop,nop,TS val 567819603 ecr 23657292], length 0
+20:21:52.272756 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1037
+20:21:52.273098 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:52.273169 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.275386 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 157
+20:21:52.286200 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 459
+20:21:52.287279 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 209
+20:21:52.287490 IP6 maddy-IdeaPad-Slim-3-15IAH8.46066 > del11s08-in-x0a.1e100.net.https: UDP, length 35
+20:21:52.289917 IP maddy-IdeaPad-Slim-3-15IAH8.41055 > _gateway.domain: 9528+ AAAA? clients4.google.com. (37)
+20:21:52.289993 IP maddy-IdeaPad-Slim-3-15IAH8.38126 > _gateway.domain: 42798+ A? clients4.google.com. (37)
+20:21:52.290037 IP maddy-IdeaPad-Slim-3-15IAH8.56397 > _gateway.domain: 60786+ Type65? clients4.google.com. (37)
+20:21:52.290339 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 6716, win 453, options [nop,nop,TS val 751696965 ecr 3909718476], length 0
+20:21:52.299536 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1225
+20:21:52.299834 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.301122 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.301362 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 5479:5912, ack 2391, win 1047, options [nop,nop,TS val 3715240554 ecr 3517818291], length 433
+20:21:52.301363 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 5912:5943, ack 2391, win 1047, options [nop,nop,TS val 3715240554 ecr 3517818291], length 31
+20:21:52.301382 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 5912, win 460, options [nop,nop,TS val 3517818482 ecr 3715240554], length 0
+20:21:52.301395 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 5943, win 460, options [nop,nop,TS val 3517818482 ecr 3715240554], length 0
+20:21:52.303275 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [P.], seq 5943:5982, ack 2391, win 1047, options [nop,nop,TS val 3715240554 ecr 3517818291], length 39
+20:21:52.303291 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 5982, win 460, options [nop,nop,TS val 3517818484 ecr 3715240554], length 0
+20:21:52.303363 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 2391:2430, ack 5982, win 460, options [nop,nop,TS val 3517818484 ecr 3715240554], length 39
+20:21:52.303471 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.303535 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.305522 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.308396 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.308397 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.308539 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.311333 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.311438 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.312159 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.38126: 42798 2/0/0 CNAME clients.l.google.com., A 142.250.193.78 (77)
+20:21:52.313989 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.41055: 9528 2/0/0 CNAME clients.l.google.com., AAAA 2404:6800:4007:82d::200e (89)
+20:21:52.314474 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56397: 60786 1/1/0 CNAME clients.l.google.com. (111)
+20:21:52.314730 IP maddy-IdeaPad-Slim-3-15IAH8.58766 > _gateway.domain: 30998+ Type65? clients.l.google.com. (38)
+20:21:52.315542 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.315543 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.315668 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.315721 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.317443 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.317475 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.319076 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [F.], seq 2430, ack 5982, win 460, options [nop,nop,TS val 3517818499 ecr 3715240554], length 0
+20:21:52.320270 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.320519 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:52.320544 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:52.320846 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [F.], seq 1900, ack 6358, win 456, options [nop,nop,TS val 1376955580 ecr 3689134108], length 0
+20:21:52.320876 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [F.], seq 1799, ack 5381, win 463, options [nop,nop,TS val 23657410 ecr 567819603], length 0
+20:21:52.320904 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [F.], seq 1867, ack 6716, win 453, options [nop,nop,TS val 751696995 ecr 3909718476], length 0
+20:21:52.322443 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.322497 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.325427 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 729
+20:21:52.325531 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1223
+20:21:52.325612 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.330335 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.330336 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.330444 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 40
+20:21:52.330464 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.331299 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.331472 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.331473 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.332785 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.333286 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.334640 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.335434 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.335469 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.345777 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.345779 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.345780 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.346067 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.349684 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 2391, win 1047, options [nop,nop,TS val 3715240592 ecr 3517818484,nop,nop,sack 1 {2430:2431}], length 0
+20:21:52.349685 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [.], ack 2431, win 1047, options [nop,nop,TS val 3715240596 ecr 3517818484], length 0
+20:21:52.349722 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [P.], seq 2391:2430, ack 5982, win 460, options [nop,nop,TS val 3517818530 ecr 3715240592], length 39
+20:21:52.350054 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350056 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350057 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350105 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350106 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350107 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.350353 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.350436 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.350474 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.350550 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [F.], seq 5982, ack 2431, win 1047, options [nop,nop,TS val 3715240596 ecr 3517818484], length 0
+20:21:52.350578 IP6 maddy-IdeaPad-Slim-3-15IAH8.48232 > maa03s47-in-x03.1e100.net.https: Flags [.], ack 5983, win 460, options [nop,nop,TS val 3517818531 ecr 3715240596], length 0
+20:21:52.350600 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.58766: 30998 0/1/0 (88)
+20:21:52.354094 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 1230
+20:21:52.354342 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:52.355357 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55551: UDP, length 224
+20:21:52.370838 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [S], seq 3285633358, win 64320, options [mss 1340,sackOK,TS val 751697045 ecr 0,nop,wscale 7], length 0
+20:21:52.371655 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 40
+20:21:52.371902 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46066: UDP, length 24
+20:21:52.375605 IP6 si-in-f84.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42520: Flags [F.], seq 6358, ack 1901, win 1048, options [nop,nop,TS val 3689134285 ecr 1376955580], length 0
+20:21:52.375628 IP6 maddy-IdeaPad-Slim-3-15IAH8.42520 > si-in-f84.1e100.net.https: Flags [.], ack 6359, win 456, options [nop,nop,TS val 1376955635 ecr 3689134285], length 0
+20:21:52.377394 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.377395 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.377475 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.377777 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:52.379012 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [S], seq 2166636858, win 64320, options [mss 1340,sackOK,TS val 2465961706 ecr 0,nop,wscale 7], length 0
+20:21:52.379723 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40974: Flags [F.], seq 6716, ack 1868, win 1050, options [nop,nop,TS val 3909718605 ecr 751696995], length 0
+20:21:52.379743 IP6 maddy-IdeaPad-Slim-3-15IAH8.40974 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 6717, win 453, options [nop,nop,TS val 751697054 ecr 3909718605], length 0
+20:21:52.381141 IP6 maddy-IdeaPad-Slim-3-15IAH8.55551 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:52.381322 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [P.], seq 5381:6397, ack 1800, win 1049, options [nop,nop,TS val 567819712 ecr 23657410], length 1016
+20:21:52.381350 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [R], seq 3395546529, win 0, length 0
+20:21:52.381694 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60864: Flags [F.], seq 6397, ack 1800, win 1049, options [nop,nop,TS val 567819712 ecr 23657410], length 0
+20:21:52.381703 IP6 maddy-IdeaPad-Slim-3-15IAH8.60864 > del11s15-in-x04.1e100.net.https: Flags [R], seq 3395546529, win 0, length 0
+20:21:52.385387 IP6 maa03s47-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48232: Flags [R], seq 154783145, win 0, length 0
+20:21:52.398754 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.398756 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.398756 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 1230
+20:21:52.399306 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 39
+20:21:52.400647 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 40
+20:21:52.403813 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 37
+20:21:52.407693 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.407695 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.407716 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 815
+20:21:52.407925 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 39
+20:21:52.409277 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 40
+20:21:52.411394 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 83
+20:21:52.411515 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 71
+20:21:52.411728 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [S.], seq 2779441499, ack 2166636859, win 65535, options [mss 1300,sackOK,TS val 74793189 ecr 2465961706,nop,wscale 8], length 0
+20:21:52.411775 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 2465961739 ecr 74793189], length 0
+20:21:52.411891 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 1226
+20:21:52.411910 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 528
+20:21:52.412392 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [P.], seq 1:1794, ack 1, win 503, options [nop,nop,TS val 2465961740 ecr 74793189], length 1793
+20:21:52.420153 IP maddy-IdeaPad-Slim-3-15IAH8.37431 > _gateway.domain: 57631+ PTR? e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.d.2.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.425658 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 241
+20:21:52.427347 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 40
+20:21:52.428469 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 83
+20:21:52.428594 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 70
+20:21:52.428864 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 634
+20:21:52.430615 IP maddy-IdeaPad-Slim-3-15IAH8.43893 > _gateway.domain: 2612+ AAAA? ogads-pa.clients6.google.com. (46)
+20:21:52.430750 IP maddy-IdeaPad-Slim-3-15IAH8.54981 > _gateway.domain: 3893+ A? ogads-pa.clients6.google.com. (46)
+20:21:52.430859 IP maddy-IdeaPad-Slim-3-15IAH8.44209 > _gateway.domain: 37777+ Type65? ogads-pa.clients6.google.com. (46)
+20:21:52.439829 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [S.], seq 606914541, ack 3285633359, win 65535, options [mss 1300,sackOK,TS val 2360246193 ecr 751697045,nop,wscale 8], length 0
+20:21:52.439867 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 751697114 ecr 2360246193], length 0
+20:21:52.440491 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [P.], seq 1:1766, ack 1, win 503, options [nop,nop,TS val 751697115 ecr 2360246193], length 1765
+20:21:52.447067 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.37431: 57631 1/0/0 PTR maa05s28-in-x0e.1e100.net. (129)
+20:21:52.447392 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 953
+20:21:52.447521 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 121
+20:21:52.447712 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:52.452044 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.54981: 3893 1/0/0 A 142.250.195.106 (62)
+20:21:52.452448 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.44209: 37777 0/1/0 (96)
+20:21:52.452761 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.43893: 2612 1/0/0 AAAA 2404:6800:4007:827::200a (74)
+20:21:52.453340 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 27
+20:21:52.453831 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.453885 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.455388 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 74793233 ecr 2465961740], length 0
+20:21:52.457292 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [.], ack 1794, win 1049, options [nop,nop,TS val 74793234 ecr 2465961740], length 0
+20:21:52.477721 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 24
+20:21:52.479374 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 248
+20:21:52.479618 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 167
+20:21:52.479689 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:52.488775 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [P.], seq 1:2417, ack 1794, win 1049, options [nop,nop,TS val 74793267 ecr 2465961740], length 2416
+20:21:52.488777 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [.], seq 2417:3625, ack 1794, win 1049, options [nop,nop,TS val 74793267 ecr 2465961740], length 1208
+20:21:52.488815 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 2465961816 ecr 74793267], length 0
+20:21:52.488859 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 2465961816 ecr 74793267], length 0
+20:21:52.491534 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [P.], seq 3625:4833, ack 1794, win 1049, options [nop,nop,TS val 74793267 ecr 2465961740], length 1208
+20:21:52.491556 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 2465961819 ecr 74793267], length 0
+20:21:52.505385 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [.], seq 4833:6041, ack 1794, win 1049, options [nop,nop,TS val 74793267 ecr 2465961740], length 1208
+20:21:52.505418 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 6041, win 458, options [nop,nop,TS val 2465961833 ecr 74793267], length 0
+20:21:52.505466 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [P.], seq 6041:6563, ack 1794, win 1049, options [nop,nop,TS val 74793267 ecr 2465961740], length 522
+20:21:52.505473 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 6563, win 454, options [nop,nop,TS val 2465961833 ecr 74793267], length 0
+20:21:52.505498 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 40
+20:21:52.505789 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 960
+20:21:52.505791 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 121
+20:21:52.505791 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 27
+20:21:52.506461 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [P.], seq 1794:1868, ack 6563, win 454, options [nop,nop,TS val 2465961834 ecr 74793267], length 74
+20:21:52.506995 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 33
+20:21:52.507111 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 33
+20:21:52.507290 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 33
+20:21:52.507815 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 1230
+20:21:52.507817 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 1230
+20:21:52.507818 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 1230
+20:21:52.509039 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.519283 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 2360246273 ecr 751697115], length 0
+20:21:52.521053 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [.], ack 1766, win 1049, options [nop,nop,TS val 2360246274 ecr 751697115], length 0
+20:21:52.524154 IP maddy-IdeaPad-Slim-3-15IAH8.56407 > _gateway.domain: 58541+ PTR? a.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.7.2.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:52.527726 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 1230
+20:21:52.527727 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 1230
+20:21:52.527756 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 607
+20:21:52.528467 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 39
+20:21:52.530296 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 40
+20:21:52.534295 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 83
+20:21:52.534474 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 70
+20:21:52.534903 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 419
+20:21:52.541012 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56407: 58541 1/0/0 PTR maa03s42-in-x0a.1e100.net. (129)
+20:21:52.541683 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [P.], seq 6563:7531, ack 1868, win 1049, options [nop,nop,TS val 74793321 ecr 2465961834], length 968
+20:21:52.547690 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 25
+20:21:52.565505 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 971
+20:21:52.565506 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 121
+20:21:52.566060 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 31
+20:21:52.567459 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 27
+20:21:52.582407 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 7531, win 447, options [nop,nop,TS val 2465961910 ecr 74793321], length 0
+20:21:52.589816 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [P.], seq 1:2417, ack 1766, win 1049, options [nop,nop,TS val 2360246342 ecr 751697115], length 2416
+20:21:52.589819 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [P.], seq 2417:4833, ack 1766, win 1049, options [nop,nop,TS val 2360246342 ecr 751697115], length 2416
+20:21:52.589875 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 751697264 ecr 2360246342], length 0
+20:21:52.589927 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 751697264 ecr 2360246342], length 0
+20:21:52.591410 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [P.], seq 4833:5754, ack 1766, win 1049, options [nop,nop,TS val 2360246342 ecr 751697115], length 921
+20:21:52.591440 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 5754, win 460, options [nop,nop,TS val 751697266 ecr 2360246342], length 0
+20:21:52.592732 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [P.], seq 1766:1840, ack 5754, win 460, options [nop,nop,TS val 751697267 ecr 2360246342], length 74
+20:21:52.593021 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 32
+20:21:52.599188 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 323
+20:21:52.600515 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 21
+20:21:52.601715 IP6 maddy-IdeaPad-Slim-3-15IAH8.55406 > maa03s42-in-x0a.1e100.net.https: UDP, length 35
+20:21:52.602513 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1226
+20:21:52.602624 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 1230
+20:21:52.602625 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 339
+20:21:52.603708 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.603760 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.603802 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.604119 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 80
+20:21:52.604640 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 35
+20:21:52.606383 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 65
+20:21:52.606549 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 31
+20:21:52.636932 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 40
+20:21:52.638519 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 40
+20:21:52.639975 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 1230
+20:21:52.641530 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 1230
+20:21:52.646683 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 1226
+20:21:52.646742 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 133
+20:21:52.650772 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55406: UDP, length 24
+20:21:52.654569 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [.], ack 1840, win 1049, options [nop,nop,TS val 2360246408 ecr 751697267], length 0
+20:21:52.664165 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.666892 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [P.], seq 5754:6730, ack 1840, win 1049, options [nop,nop,TS val 2360246409 ecr 751697267], length 976
+20:21:52.669823 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 24
+20:21:52.675807 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 1230
+20:21:52.675808 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 300
+20:21:52.675862 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 930
+20:21:52.675863 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 63
+20:21:52.675998 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 24
+20:21:52.676728 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 78
+20:21:52.676820 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 31
+20:21:52.677208 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1226
+20:21:52.677270 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:52.677284 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 142
+20:21:52.680776 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 207
+20:21:52.680777 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 67
+20:21:52.681169 IP6 maddy-IdeaPad-Slim-3-15IAH8.34108 > del11s08-in-x0a.1e100.net.https: UDP, length 35
+20:21:52.697823 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 1230
+20:21:52.697825 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 120
+20:21:52.698174 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 33
+20:21:52.701516 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 27
+20:21:52.707441 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 6730, win 453, options [nop,nop,TS val 751697382 ecr 2360246409], length 0
+20:21:52.712778 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 25
+20:21:52.716096 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 25
+20:21:52.717585 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 29
+20:21:52.717898 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 33
+20:21:52.727154 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:52.767253 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 835
+20:21:52.768638 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 180
+20:21:52.769618 IP6 maddy-IdeaPad-Slim-3-15IAH8.47285 > maa03s42-in-x0a.1e100.net.https: UDP, length 37
+20:21:52.781793 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34108: UDP, length 24
+20:21:52.826202 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 502
+20:21:52.826204 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 34
+20:21:52.826205 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.47285: UDP, length 24
+20:21:52.826205 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 225
+20:21:52.826785 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 35
+20:21:52.852355 IP6 maddy-IdeaPad-Slim-3-15IAH8.42060 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:52.877486 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.42060: UDP, length 24
+20:21:53.422883 IP maddy-IdeaPad-Slim-3-15IAH8.36062 > _gateway.domain: 19141+ AAAA? play.google.com. (33)
+20:21:53.422989 IP maddy-IdeaPad-Slim-3-15IAH8.53533 > _gateway.domain: 29979+ A? play.google.com. (33)
+20:21:53.423050 IP maddy-IdeaPad-Slim-3-15IAH8.56570 > _gateway.domain: 64101+ Type65? play.google.com. (33)
+20:21:53.452598 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.36062: 19141 1/0/0 AAAA 2404:6800:4007:821::200e (61)
+20:21:53.466445 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.53533: 29979 1/0/0 A 142.250.206.142 (49)
+20:21:53.466808 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56570: 64101 0/1/0 (83)
+20:21:53.468531 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.468617 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.499657 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 40
+20:21:53.504453 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 1230
+20:21:53.504455 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 1230
+20:21:53.504456 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 1230
+20:21:53.505426 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.531736 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 37
+20:21:53.545889 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 1230
+20:21:53.545891 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 1230
+20:21:53.545891 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 652
+20:21:53.546336 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 39
+20:21:53.547838 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 40
+20:21:53.551460 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 83
+20:21:53.551604 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 73
+20:21:53.552093 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 377
+20:21:53.563167 IP maddy-IdeaPad-Slim-3-15IAH8.38663 > _gateway.domain: 35961+ PTR? e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.1.2.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:53.571812 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 657
+20:21:53.572428 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 170
+20:21:53.581642 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 631
+20:21:53.581644 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 121
+20:21:53.581644 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 27
+20:21:53.582013 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 33
+20:21:53.582100 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 33
+20:21:53.582185 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 33
+20:21:53.594532 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.38663: 35961 1/0/0 PTR maa05s26-in-x0e.1e100.net. (129)
+20:21:53.605705 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 25
+20:21:53.660696 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 294
+20:21:53.664844 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.664916 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.665213 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 78
+20:21:53.686374 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 36
+20:21:53.705900 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 40
+20:21:53.705902 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 1230
+20:21:53.730726 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 294
+20:21:53.730944 IP6 maddy-IdeaPad-Slim-3-15IAH8.55164 > maa05s26-in-x0e.1e100.net.https: UDP, length 33
+20:21:53.733317 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 1230
+20:21:53.734498 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 307
+20:21:53.734520 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 630
+20:21:53.734734 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 25
+20:21:53.735049 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 1230
+20:21:53.735172 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 31
+20:21:53.735644 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 1226
+20:21:53.735676 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 1226
+20:21:53.735696 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 301
+20:21:53.755932 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.55164: UDP, length 23
+20:21:53.773667 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 120
+20:21:53.776428 IP maddy-IdeaPad-Slim-3-15IAH8.57437 > _gateway.domain: 38659+ AAAA? mtalk.google.com. (34)
+20:21:53.776514 IP maddy-IdeaPad-Slim-3-15IAH8.33582 > _gateway.domain: 49451+ A? mtalk.google.com. (34)
+20:21:53.776727 IP maddy-IdeaPad-Slim-3-15IAH8.44130 > _gateway.domain: 51886+ AAAA? android.clients.google.com. (44)
+20:21:53.776798 IP maddy-IdeaPad-Slim-3-15IAH8.42856 > _gateway.domain: 20810+ A? android.clients.google.com. (44)
+20:21:53.776859 IP maddy-IdeaPad-Slim-3-15IAH8.35334 > _gateway.domain: 52959+ Type65? android.clients.google.com. (44)
+20:21:53.778396 IP maddy-IdeaPad-Slim-3-15IAH8.45845 > _gateway.domain: 46396+ AAAA? update.googleapis.com. (39)
+20:21:53.778533 IP maddy-IdeaPad-Slim-3-15IAH8.50961 > _gateway.domain: 21649+ Type65? update.googleapis.com. (39)
+20:21:53.785307 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 25
+20:21:53.785308 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 29
+20:21:53.785533 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 31
+20:21:53.787227 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 25
+20:21:53.803525 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.57437: 38659 2/0/0 CNAME mobile-gtalk.l.google.com., AAAA 2404:6800:4003:c1a::bc (91)
+20:21:53.803886 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.33582: 49451 2/0/0 CNAME mobile-gtalk.l.google.com., A 74.125.200.188 (79)
+20:21:53.804600 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [S], seq 4059928195, win 64320, options [mss 1340,sackOK,TS val 51060007 ecr 0,nop,wscale 7], length 0
+20:21:53.807873 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.42856: 20810 17/0/0 CNAME android.l.google.com., A 142.250.192.206, A 142.250.192.238, A 142.250.193.14, A 142.250.193.46, A 142.250.193.78, A 142.250.193.206, A 142.250.193.238, A 142.250.194.206, A 142.250.194.238, A 142.250.195.14, A 142.250.207.206, A 142.250.207.238, A 216.58.200.206, A 142.250.77.206, A 142.250.77.238, A 142.250.182.174 (324)
+20:21:53.808425 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.44130: 51886 1/1/0 CNAME android.l.google.com. (118)
+20:21:53.808659 IP maddy-IdeaPad-Slim-3-15IAH8.41356 > _gateway.domain: 48829+ AAAA? android.l.google.com. (38)
+20:21:53.810275 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.35334: 52959 1/1/0 CNAME android.l.google.com. (118)
+20:21:53.810545 IP maddy-IdeaPad-Slim-3-15IAH8.56711 > _gateway.domain: 53692+ Type65? android.l.google.com. (38)
+20:21:53.810927 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [F.], seq 1868, ack 7531, win 447, options [nop,nop,TS val 2465963138 ecr 74793321], length 0
+20:21:53.810973 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [F.], seq 1840, ack 6730, win 453, options [nop,nop,TS val 751698485 ecr 2360246409], length 0
+20:21:53.811898 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.41356: 48829 0/0/0 (38)
+20:21:53.812302 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.45845: 46396 1/0/0 AAAA 2404:6800:4002:821::2003 (67)
+20:21:53.813066 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.50961: 21649 0/1/0 (96)
+20:21:53.813821 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 1230
+20:21:53.813854 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 1230
+20:21:53.820941 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 1250
+20:21:53.820978 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 1250
+20:21:53.832396 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56711: 53692 0/1/0 (88)
+20:21:53.835898 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.45594: Flags [F.], seq 7531, ack 1869, win 1049, options [nop,nop,TS val 74794615 ecr 2465963138], length 0
+20:21:53.835922 IP6 maddy-IdeaPad-Slim-3-15IAH8.45594 > maa05s28-in-x0e.1e100.net.https: Flags [.], ack 7532, win 447, options [nop,nop,TS val 2465963163 ecr 74794615], length 0
+20:21:53.868298 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [S.], seq 2123924395, ack 4059928196, win 65535, options [mss 1300,sackOK,TS val 313671061 ecr 51060007,nop,wscale 8], length 0
+20:21:53.868351 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 1, win 503, options [nop,nop,TS val 51060071 ecr 313671061], length 0
+20:21:53.869230 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [P.], seq 1:1764, ack 1, win 503, options [nop,nop,TS val 51060071 ecr 313671061], length 1763
+20:21:53.871567 IP6 del11s08-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.40988: Flags [F.], seq 6730, ack 1841, win 1049, options [nop,nop,TS val 2360247626 ecr 751698485], length 0
+20:21:53.871616 IP6 maddy-IdeaPad-Slim-3-15IAH8.40988 > del11s08-in-x0a.1e100.net.https: Flags [.], ack 6731, win 453, options [nop,nop,TS val 751698546 ecr 2360247626], length 0
+20:21:53.872921 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 1055
+20:21:53.876167 IP maddy-IdeaPad-Slim-3-15IAH8.47090 > _gateway.domain: 36798+ PTR? c.b.0.0.0.0.0.0.0.0.0.0.0.0.0.0.a.1.c.0.3.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:53.880317 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 40
+20:21:53.884486 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.884488 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.884489 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.885835 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 1230
+20:21:53.888452 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 40
+20:21:53.891844 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1250
+20:21:53.891889 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1250
+20:21:53.891890 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1250
+20:21:53.892867 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 1250
+20:21:53.899149 IP6 maddy-IdeaPad-Slim-3-15IAH8.57159 > maa05s26-in-x0e.1e100.net.https: UDP, length 36
+20:21:53.902743 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [S], seq 2256816418, win 64320, options [mss 1340,sackOK,TS val 2064761424 ecr 0,nop,wscale 7], length 0
+20:21:53.945714 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [.], ack 1, win 1055, options [nop,nop,TS val 313671131 ecr 51060071,nop,nop,sack 1 {1289:1764}], length 0
+20:21:53.945715 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [.], ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 0
+20:21:53.945777 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [.], seq 1:1209, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 1208
+20:21:53.945796 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 1209, win 494, options [nop,nop,TS val 51060148 ecr 313671131], length 0
+20:21:53.945909 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 1209:2417, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 1208
+20:21:53.945918 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 2417, win 485, options [nop,nop,TS val 51060148 ecr 313671131], length 0
+20:21:53.947359 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [.], seq 2417:3625, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 1208
+20:21:53.947384 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 3625, win 476, options [nop,nop,TS val 51060150 ecr 313671131], length 0
+20:21:53.947478 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 3625:4833, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 1208
+20:21:53.947484 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 4833, win 467, options [nop,nop,TS val 51060150 ecr 313671131], length 0
+20:21:53.947637 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 37
+20:21:53.947639 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 4833:7249, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 2416
+20:21:53.947666 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 7249, win 449, options [nop,nop,TS val 51060150 ecr 313671131], length 0
+20:21:53.949675 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:53.949740 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:53.950373 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 7249:7665, ack 1764, win 1049, options [nop,nop,TS val 313671131 ecr 51060071], length 416
+20:21:53.950389 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 7665, win 446, options [nop,nop,TS val 51060153 ecr 313671131], length 0
+20:21:53.952147 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [S], seq 1722808183, win 64240, options [mss 1460,sackOK,TS val 1622841690 ecr 0,nop,wscale 7], length 0
+20:21:53.954360 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1250
+20:21:53.954362 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1250
+20:21:53.954585 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 39
+20:21:53.954700 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 1209
+20:21:53.956108 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 40
+20:21:53.957223 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 37
+20:21:53.957580 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [P.], seq 1764:1828, ack 7665, win 446, options [nop,nop,TS val 51060160 ecr 313671131], length 64
+20:21:53.957962 IP6 maa05s26-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57159: UDP, length 24
+20:21:53.958138 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 80
+20:21:53.958376 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1226
+20:21:53.958389 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1064
+20:21:53.958428 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [P.], seq 1828:2006, ack 7665, win 446, options [nop,nop,TS val 51060161 ecr 313671131], length 178
+20:21:53.958589 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 202
+20:21:53.958878 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 83
+20:21:53.958952 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 71
+20:21:53.959166 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 404
+20:21:53.965957 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.965959 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.965959 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:53.966078 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 233
+20:21:53.966185 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 39
+20:21:53.966437 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 39
+20:21:53.968001 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [S.], seq 2475782200, ack 2256816419, win 65535, options [mss 1300,sackOK,TS val 4065766583 ecr 2064761424,nop,wscale 8], length 0
+20:21:53.968039 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 2064761489 ecr 4065766583], length 0
+20:21:53.968409 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [P.], seq 1:1796, ack 1, win 503, options [nop,nop,TS val 2064761490 ecr 4065766583], length 1795
+20:21:53.970547 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 83
+20:21:53.970658 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 71
+20:21:53.970978 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 1226
+20:21:53.970991 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 785
+20:21:54.027676 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [.], ack 2006, win 1049, options [nop,nop,TS val 313671217 ecr 51060160], length 0
+20:21:54.027677 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 7665:8202, ack 2006, win 1049, options [nop,nop,TS val 313671218 ecr 51060160], length 537
+20:21:54.028000 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 40
+20:21:54.028002 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 1230
+20:21:54.028003 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 105
+20:21:54.028362 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [S.], seq 2358391101, ack 1722808184, win 65535, options [mss 1300,sackOK,TS val 835127865 ecr 1622841690,nop,wscale 8], length 0
+20:21:54.028376 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 161
+20:21:54.028410 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 1, win 502, options [nop,nop,TS val 1622841767 ecr 835127865], length 0
+20:21:54.028491 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 1230
+20:21:54.029081 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [P.], seq 1:1833, ack 1, win 502, options [nop,nop,TS val 1622841767 ecr 835127865], length 1832
+20:21:54.030386 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 41
+20:21:54.031564 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:54.035679 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 966
+20:21:54.035999 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 121
+20:21:54.036220 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 33
+20:21:54.036393 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 33
+20:21:54.038130 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 27
+20:21:54.038701 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 33
+20:21:54.040013 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [.], ack 1, win 1055, options [nop,nop,TS val 4065766656 ecr 2064761489,nop,nop,sack 1 {1289:1796}], length 0
+20:21:54.040015 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [.], ack 1796, win 1048, options [nop,nop,TS val 4065766656 ecr 2064761490], length 0
+20:21:54.041555 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 956
+20:21:54.041853 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 121
+20:21:54.042106 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 33
+20:21:54.042317 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 33
+20:21:54.043439 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 8202:8291, ack 2006, win 1049, options [nop,nop,TS val 313671235 ecr 51060160], length 89
+20:21:54.043658 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 8291, win 442, options [nop,nop,TS val 51060246 ecr 313671218], length 0
+20:21:54.043764 IP6 sg-in-f188.1e100.net.5228 > maddy-IdeaPad-Slim-3-15IAH8.49330: Flags [P.], seq 8291:8325, ack 2006, win 1049, options [nop,nop,TS val 313671235 ecr 51060160], length 34
+20:21:54.045846 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 27
+20:21:54.046185 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 33
+20:21:54.076809 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 24
+20:21:54.084406 IP6 maddy-IdeaPad-Slim-3-15IAH8.49330 > sg-in-f188.1e100.net.5228: Flags [.], ack 8325, win 442, options [nop,nop,TS val 51060287 ecr 313671235], length 0
+20:21:54.095594 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:54.095945 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 25
+20:21:54.097846 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:54.105961 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 305
+20:21:54.105965 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 925
+20:21:54.106050 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 99
+20:21:54.106051 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 24
+20:21:54.106052 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 27
+20:21:54.106219 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [.], seq 1:1209, ack 1796, win 1050, options [nop,nop,TS val 4065766720 ecr 2064761490], length 1208
+20:21:54.106310 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 1209, win 494, options [nop,nop,TS val 2064761628 ecr 4065766720], length 0
+20:21:54.106611 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [.], ack 1289, win 1045, options [nop,nop,TS val 835127941 ecr 1622841767], length 0
+20:21:54.106658 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [.], ack 1833, win 1043, options [nop,nop,TS val 835127943 ecr 1622841767], length 0
+20:21:54.106820 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 79
+20:21:54.106974 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:54.107778 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [P.], seq 1209:2417, ack 1796, win 1050, options [nop,nop,TS val 4065766720 ecr 2064761490], length 1208
+20:21:54.107818 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 2064761629 ecr 4065766720], length 0
+20:21:54.107898 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [P.], seq 2417:4833, ack 1796, win 1050, options [nop,nop,TS val 4065766720 ecr 2064761490], length 2416
+20:21:54.107900 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [P.], seq 4833:5751, ack 1796, win 1050, options [nop,nop,TS val 4065766720 ecr 2064761490], length 918
+20:21:54.107911 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 4833, win 467, options [nop,nop,TS val 2064761629 ecr 4065766720], length 0
+20:21:54.107933 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 5751, win 460, options [nop,nop,TS val 2064761629 ecr 4065766720], length 0
+20:21:54.109040 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [P.], seq 1796:1870, ack 5751, win 460, options [nop,nop,TS val 2064761630 ecr 4065766720], length 74
+20:21:54.132587 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:54.149612 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 220
+20:21:54.150016 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 37
+20:21:54.152391 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 68
+20:21:54.152688 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 210
+20:21:54.152791 IP maddy-IdeaPad-Slim-3-15IAH8.57180 > del11s12-in-f14.1e100.net.https: UDP, length 33
+20:21:54.171017 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [P.], seq 1:2537, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 2536
+20:21:54.171020 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [.], seq 2537:3805, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 1268
+20:21:54.171074 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 2537, win 483, options [nop,nop,TS val 1622841909 ecr 835128012], length 0
+20:21:54.171119 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 3805, win 474, options [nop,nop,TS val 1622841909 ecr 835128012], length 0
+20:21:54.171498 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [P.], seq 3805:5073, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 1268
+20:21:54.171501 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [.], seq 5073:6341, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 1268
+20:21:54.171533 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 5073, win 465, options [nop,nop,TS val 1622841910 ecr 835128012], length 0
+20:21:54.171574 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 6341, win 456, options [nop,nop,TS val 1622841910 ecr 835128012], length 0
+20:21:54.174042 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [P.], seq 6341:7609, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 1268
+20:21:54.174045 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [P.], seq 7609:7848, ack 1833, win 1043, options [nop,nop,TS val 835128012 ecr 1622841767], length 239
+20:21:54.174084 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 7609, win 447, options [nop,nop,TS val 1622841912 ecr 835128012], length 0
+20:21:54.174131 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 7848, win 446, options [nop,nop,TS val 1622841912 ecr 835128012], length 0
+20:21:54.181556 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [P.], seq 1833:1907, ack 7848, win 446, options [nop,nop,TS val 1622841920 ecr 835128012], length 74
+20:21:54.186597 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [.], ack 1870, win 1050, options [nop,nop,TS val 4065766793 ecr 2064761630], length 0
+20:21:54.186599 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.52014: Flags [P.], seq 5751:6723, ack 1870, win 1050, options [nop,nop,TS val 4065766793 ecr 2064761630], length 972
+20:21:54.186629 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 120
+20:21:54.186631 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 23
+20:21:54.187166 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:54.208952 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:54.208954 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 743
+20:21:54.209878 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:54.209941 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 25
+20:21:54.211455 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 214
+20:21:54.213411 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:54.227360 IP6 maddy-IdeaPad-Slim-3-15IAH8.52014 > del12s04-in-x03.1e100.net.https: Flags [.], ack 6723, win 453, options [nop,nop,TS val 2064761749 ecr 4065766793], length 0
+20:21:54.239145 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.57180: UDP, length 24
+20:21:54.256144 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [.], ack 1907, win 1043, options [nop,nop,TS val 835128095 ecr 1622841920], length 0
+20:21:54.256146 IP del11s12-in-f14.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.58280: Flags [P.], seq 7848:8830, ack 1907, win 1043, options [nop,nop,TS val 835128096 ecr 1622841920], length 982
+20:21:54.276026 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 25
+20:21:54.296298 IP maddy-IdeaPad-Slim-3-15IAH8.58280 > del11s12-in-f14.1e100.net.https: Flags [.], ack 8830, win 439, options [nop,nop,TS val 1622842035 ecr 835128096], length 0
+20:21:54.303009 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 651
+20:21:54.307575 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 38
+20:21:54.308936 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 289
+20:21:54.312125 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 58
+20:21:54.312382 IP6 maddy-IdeaPad-Slim-3-15IAH8.48137 > del12s04-in-x03.1e100.net.https: UDP, length 31
+20:21:54.351312 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.47090: 36798 1/0/0 PTR sg-in-f188.1e100.net. (124)
+20:21:54.353974 IP maddy-IdeaPad-Slim-3-15IAH8.52672 > _gateway.domain: 11689+ PTR? 3.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.1.2.8.0.2.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:54.380039 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.52672: 11689 1/0/0 PTR del12s04-in-x03.1e100.net. (129)
+20:21:54.381410 IP maddy-IdeaPad-Slim-3-15IAH8.45595 > _gateway.domain: 51531+ PTR? 206.192.250.142.in-addr.arpa. (46)
+20:21:54.395770 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.48137: UDP, length 24
+20:21:54.399612 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.45595: 51531 1/0/0 PTR del11s12-in-f14.1e100.net. (85)
+20:21:54.477670 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 29
+20:21:54.628365 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 29
+20:21:54.630811 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 26
+20:21:54.700359 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 27
+20:21:54.865482 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:54.865484 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 202
+20:21:54.865484 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 25
+20:21:54.865485 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 241
+20:21:54.865983 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:54.866088 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:54.960228 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 24
+20:21:56.434885 IP maddy-IdeaPad-Slim-3-15IAH8.52147 > _gateway.domain: 49889+ AAAA? ogs.google.com. (32)
+20:21:56.435118 IP maddy-IdeaPad-Slim-3-15IAH8.41829 > _gateway.domain: 61484+ A? ogs.google.com. (32)
+20:21:56.435284 IP maddy-IdeaPad-Slim-3-15IAH8.47688 > _gateway.domain: 22227+ Type65? ogs.google.com. (32)
+20:21:56.470420 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.52147: 49889 2/0/0 CNAME www3.l.google.com., AAAA 2404:6800:4007:81d::200e (81)
+20:21:56.475214 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.47688: 22227 1/1/0 CNAME www3.l.google.com. (103)
+20:21:56.475770 IP maddy-IdeaPad-Slim-3-15IAH8.32844 > _gateway.domain: 43920+ Type65? www3.l.google.com. (35)
+20:21:56.475890 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.41829: 61484 2/0/0 CNAME www3.l.google.com., A 142.250.182.110 (69)
+20:21:56.486355 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 1230
+20:21:56.486416 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 1230
+20:21:56.492501 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.32844: 43920 0/1/0 (85)
+20:21:56.529703 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 40
+20:21:56.534459 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 1230
+20:21:56.534463 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 1230
+20:21:56.534464 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 1230
+20:21:56.535641 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 1230
+20:21:56.568160 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 1230
+20:21:56.568164 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 1230
+20:21:56.568164 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 809
+20:21:56.568604 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 39
+20:21:56.570484 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 40
+20:21:56.574849 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 83
+20:21:56.575042 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 67
+20:21:56.576147 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 1226
+20:21:56.576210 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 1230
+20:21:56.576229 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 121
+20:21:56.579439 IP maddy-IdeaPad-Slim-3-15IAH8.54236 > _gateway.domain: 52208+ PTR? e.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.d.1.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:56.615578 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.54236: 52208 1/0/0 PTR maa05s22-in-x0e.1e100.net. (129)
+20:21:56.615954 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 943
+20:21:56.615956 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 121
+20:21:56.616516 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 31
+20:21:56.621736 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 23
+20:21:56.621740 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 27
+20:21:56.647730 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 32
+20:21:56.794614 IP maddy-IdeaPad-Slim-3-15IAH8.34156 > _gateway.domain: 23067+ AAAA? optimizationguide-pa.googleapis.com. (53)
+20:21:56.794719 IP maddy-IdeaPad-Slim-3-15IAH8.47243 > _gateway.domain: 8089+ A? optimizationguide-pa.googleapis.com. (53)
+20:21:56.794779 IP maddy-IdeaPad-Slim-3-15IAH8.50187 > _gateway.domain: 5521+ Type65? optimizationguide-pa.googleapis.com. (53)
+20:21:56.798460 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 957
+20:21:56.823019 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 29
+20:21:56.827058 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.34156: 23067 4/0/0 AAAA 2404:6800:4007:82d::200a, AAAA 2404:6800:4007:81f::200a, AAAA 2404:6800:4007:820::200a, AAAA 2404:6800:4007:821::200a (165)
+20:21:56.827410 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.50187: 5521 0/1/0 (110)
+20:21:56.827656 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.47243: 8089 16/0/0 A 142.250.193.202, A 142.250.195.10, A 142.250.207.202, A 142.250.207.234, A 172.217.166.10, A 172.217.27.170, A 172.217.167.234, A 216.58.200.202, A 142.250.77.234, A 142.250.182.170, A 142.250.192.170, A 142.250.192.202, A 142.250.192.234, A 142.250.193.10, A 142.250.193.42, A 142.250.193.74 (309)
+20:21:56.829163 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 1230
+20:21:56.829298 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 1230
+20:21:56.861611 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 40
+20:21:56.865778 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:56.865781 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:56.865782 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:56.866640 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 1230
+20:21:56.875968 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 24
+20:21:56.883723 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [S], seq 3996821664, win 64320, options [mss 1340,sackOK,TS val 3169842644 ecr 0,nop,wscale 7], length 0
+20:21:56.892727 IP maddy-IdeaPad-Slim-3-15IAH8.56514 > _gateway.domain: 3055+ PTR? a.0.0.2.0.0.0.0.0.0.0.0.0.0.0.0.d.2.8.0.7.0.0.4.0.0.8.6.4.0.4.2.ip6.arpa. (90)
+20:21:56.895499 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:56.895501 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:56.895502 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 144
+20:21:56.895518 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 37
+20:21:56.895911 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 39
+20:21:56.897355 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 40
+20:21:56.901191 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 83
+20:21:56.901418 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 74
+20:21:56.901902 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 728
+20:21:56.906144 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 28
+20:21:56.923911 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56514: 3055 1/0/0 PTR maa05s28-in-x0a.1e100.net. (129)
+20:21:56.929329 ARP, Request who-has maddy-IdeaPad-Slim-3-15IAH8 tell _gateway, length 28
+20:21:56.929352 ARP, Reply maddy-IdeaPad-Slim-3-15IAH8 is-at 90:65:84:48:29:89 (oui Unknown), length 28
+20:21:56.929627 IP6 _gateway > maddy-IdeaPad-Slim-3-15IAH8: ICMP6, neighbor solicitation, who has maddy-IdeaPad-Slim-3-15IAH8, length 32
+20:21:56.929663 IP6 maddy-IdeaPad-Slim-3-15IAH8 > _gateway: ICMP6, neighbor advertisement, tgt is maddy-IdeaPad-Slim-3-15IAH8, length 24
+20:21:56.931438 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [S.], seq 2960805841, ack 3996821665, win 65535, options [mss 1300,sackOK,TS val 3250363821 ecr 3169842644,nop,wscale 8], length 0
+20:21:56.931493 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 3169842692 ecr 3250363821], length 0
+20:21:56.932119 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [P.], seq 1:1746, ack 1, win 503, options [nop,nop,TS val 3169842692 ecr 3250363821], length 1745
+20:21:56.932318 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:56.935952 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 984
+20:21:56.935955 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 121
+20:21:56.936408 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 32
+20:21:56.941861 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 27
+20:21:56.961781 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 3250363851 ecr 3169842692], length 0
+20:21:56.963819 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [.], ack 1746, win 1049, options [nop,nop,TS val 3250363852 ecr 3169842692], length 0
+20:21:56.967574 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 32
+20:21:56.995280 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [P.], seq 1:2417, ack 1746, win 1049, options [nop,nop,TS val 3250363885 ecr 3169842692], length 2416
+20:21:56.995282 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [.], seq 2417:3625, ack 1746, win 1049, options [nop,nop,TS val 3250363885 ecr 3169842692], length 1208
+20:21:56.995332 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [.], ack 2417, win 485, options [nop,nop,TS val 3169842756 ecr 3250363885], length 0
+20:21:56.995376 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [.], ack 3625, win 476, options [nop,nop,TS val 3169842756 ecr 3250363885], length 0
+20:21:56.998196 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [P.], seq 3625:4467, ack 1746, win 1049, options [nop,nop,TS val 3250363885 ecr 3169842692], length 842
+20:21:56.998230 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [.], ack 4467, win 470, options [nop,nop,TS val 3169842758 ecr 3250363885], length 0
+20:21:56.999126 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [P.], seq 1746:1820, ack 4467, win 470, options [nop,nop,TS val 3169842759 ecr 3250363885], length 74
+20:21:57.038610 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.44494: Flags [P.], seq 4467:5467, ack 1820, win 1049, options [nop,nop,TS val 3250363928 ecr 3169842759], length 1000
+20:21:57.040167 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1226
+20:21:57.040471 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:57.040472 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:57.041047 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 35
+20:21:57.041400 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 1230
+20:21:57.041483 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 142
+20:21:57.041608 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 50
+20:21:57.043184 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 31
+20:21:57.043276 IP6 maddy-IdeaPad-Slim-3-15IAH8.34400 > maa05s28-in-x0a.1e100.net.https: UDP, length 31
+20:21:57.076894 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 29
+20:21:57.079300 IP6 maddy-IdeaPad-Slim-3-15IAH8.44494 > maa05s28-in-x0a.1e100.net.https: Flags [.], ack 5467, win 463, options [nop,nop,TS val 3169842840 ecr 3250363928], length 0
+20:21:57.090944 IP6 maa05s28-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.34400: UDP, length 24
+20:21:57.107636 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 29
+20:21:57.121692 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 743
+20:21:57.134893 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 24
+20:21:57.143601 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 654
+20:21:57.145431 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 40
+20:21:57.163360 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:57.163491 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.163491 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.163552 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.165634 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165635 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165695 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165727 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.165764 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.165903 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165903 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165904 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.165938 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.167835 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.167836 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.167897 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.169370 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.169399 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.171394 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.173628 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.173837 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.175249 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.177860 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.178011 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.180302 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.180638 IP6 maa05s22-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.46851: UDP, length 28
+20:21:57.183262 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.183418 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.185348 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 282
+20:21:57.206371 IP6 maddy-IdeaPad-Slim-3-15IAH8.46851 > maa05s22-in-x0e.1e100.net.https: UDP, length 32
+20:21:57.210506 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.246762 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 28
+20:21:57.272459 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.340104 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1223
+20:21:57.340107 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 41
+20:21:57.340693 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.342743 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 923
+20:21:57.342815 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 745
+20:21:57.342987 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.345447 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1223
+20:21:57.345493 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.345707 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.350433 IP maddy-IdeaPad-Slim-3-15IAH8.36393 > _gateway.domain: 61356+ AAAA? www.googleadservices.com. (42)
+20:21:57.350695 IP maddy-IdeaPad-Slim-3-15IAH8.60720 > _gateway.domain: 20951+ A? www.googleadservices.com. (42)
+20:21:57.350704 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1148
+20:21:57.351542 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 357
+20:21:57.358302 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:57.358338 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:57.358358 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:57.363733 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:57.363735 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 870
+20:21:57.363803 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 75
+20:21:57.364033 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 35
+20:21:57.367669 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 187
+20:21:57.374753 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.60720: 20951 1/0/0 A 142.250.195.130 (58)
+20:21:57.375203 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.36393: 61356 0/1/0 (99)
+20:21:57.376285 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1119
+20:21:57.376286 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1018
+20:21:57.376559 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 1250
+20:21:57.376617 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 1250
+20:21:57.376779 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.392703 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 823
+20:21:57.392705 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1223
+20:21:57.392706 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.392749 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.393064 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.393283 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.393413 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.393415 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.393548 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.394208 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.394438 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 31
+20:21:57.395434 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.395437 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.395788 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.398335 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.398337 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.398561 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.402408 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.402410 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.402443 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 40
+20:21:57.402614 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.407434 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.407435 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.407606 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.410899 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 40
+20:21:57.411121 IP maddy-IdeaPad-Slim-3-15IAH8.55686 > _gateway.domain: 50161+ PTR? 130.195.250.142.in-addr.arpa. (46)
+20:21:57.412234 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.412236 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.412359 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.415410 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 1230
+20:21:57.415411 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 1230
+20:21:57.417348 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.417349 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.417411 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.420274 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.420276 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.420354 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.425543 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 40
+20:21:57.427306 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.427307 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.427495 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.430739 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.430809 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.430946 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.431682 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1250
+20:21:57.431684 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1250
+20:21:57.431792 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1250
+20:21:57.432356 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 1250
+20:21:57.433925 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.433926 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.434133 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.435760 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.55686: 50161 1/0/0 PTR maa03s40-in-f2.1e100.net. (84)
+20:21:57.441572 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:57.446356 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.446358 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.446617 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.447526 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 1230
+20:21:57.447557 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.447559 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.447656 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 302
+20:21:57.447657 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 928
+20:21:57.447657 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 47
+20:21:57.447722 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 24
+20:21:57.448086 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 78
+20:21:57.448143 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 31
+20:21:57.448215 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.448388 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1226
+20:21:57.448398 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 554
+20:21:57.448722 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [S], seq 2036916610, win 64240, options [mss 1460,sackOK,TS val 3050124379 ecr 0,nop,wscale 7], length 0
+20:21:57.450806 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.450807 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.451030 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.453747 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.453748 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.453926 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.472516 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.472518 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.472519 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.472819 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 37
+20:21:57.475565 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1250
+20:21:57.475649 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 37
+20:21:57.475998 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.475999 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.475999 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1197
+20:21:57.476092 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.476164 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.476261 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1151
+20:21:57.476712 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 39
+20:21:57.481934 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 83
+20:21:57.482103 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 74
+20:21:57.482678 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 689
+20:21:57.482927 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 120
+20:21:57.485509 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 29
+20:21:57.485670 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:57.492440 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [S.], seq 3581751456, ack 2036916611, win 65535, options [mss 1300,sackOK,TS val 3916797402 ecr 3050124379,nop,wscale 8], length 0
+20:21:57.492476 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 1, win 502, options [nop,nop,TS val 3050124423 ecr 3916797402], length 0
+20:21:57.492829 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [P.], seq 1:1735, ack 1, win 502, options [nop,nop,TS val 3050124423 ecr 3916797402], length 1734
+20:21:57.493502 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 25
+20:21:57.494854 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 310
+20:21:57.509978 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 688
+20:21:57.511194 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 22
+20:21:57.511604 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 36
+20:21:57.518669 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 1250
+20:21:57.518698 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 111
+20:21:57.518852 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 164
+20:21:57.518913 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 780
+20:21:57.522394 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 962
+20:21:57.522480 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 34
+20:21:57.522685 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 121
+20:21:57.522735 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 33
+20:21:57.527415 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 27
+20:21:57.527539 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 33
+20:21:57.533609 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [.], ack 1289, win 1045, options [nop,nop,TS val 3916797443 ecr 3050124423], length 0
+20:21:57.546080 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [.], ack 1735, win 1044, options [nop,nop,TS val 3916797445 ecr 3050124423], length 0
+20:21:57.566114 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 332
+20:21:57.566116 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 21
+20:21:57.566774 IP maddy-IdeaPad-Slim-3-15IAH8.43659 > maa03s40-in-f2.1e100.net.https: UDP, length 37
+20:21:57.569555 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [.], seq 1:1269, ack 1735, win 1044, options [nop,nop,TS val 3916797478 ecr 3050124423], length 1268
+20:21:57.569592 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 1269, win 493, options [nop,nop,TS val 3050124500 ecr 3916797478], length 0
+20:21:57.571323 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [P.], seq 1269:2537, ack 1735, win 1044, options [nop,nop,TS val 3916797478 ecr 3050124423], length 1268
+20:21:57.571347 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 2537, win 484, options [nop,nop,TS val 3050124502 ecr 3916797478], length 0
+20:21:57.571378 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [.], seq 2537:3805, ack 1735, win 1044, options [nop,nop,TS val 3916797478 ecr 3050124423], length 1268
+20:21:57.571386 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 3805, win 475, options [nop,nop,TS val 3050124502 ecr 3916797478], length 0
+20:21:57.571434 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [P.], seq 3805:4080, ack 1735, win 1044, options [nop,nop,TS val 3916797478 ecr 3050124423], length 275
+20:21:57.571440 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 4080, win 473, options [nop,nop,TS val 3050124502 ecr 3916797478], length 0
+20:21:57.578253 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [P.], seq 1735:1809, ack 4080, win 473, options [nop,nop,TS val 3050124508 ecr 3916797478], length 74
+20:21:57.580216 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1223
+20:21:57.581629 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 25
+20:21:57.581883 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.581931 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.581932 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.582006 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.582117 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.582216 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 27
+20:21:57.583363 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.583365 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.583365 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.583522 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.585326 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.587287 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.589641 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.589644 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.589645 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.591328 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.591330 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.591392 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.591393 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.591552 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.591568 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.593456 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.595346 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.595348 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597695 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597697 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597698 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597735 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597735 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.597958 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.599404 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1165
+20:21:57.599427 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1223
+20:21:57.599547 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.600921 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 819
+20:21:57.601427 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.601429 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.601429 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.603449 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.603452 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.603480 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.603481 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.603656 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.605317 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.605318 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.605371 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.607313 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.607315 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.609322 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.609323 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.609486 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.609487 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.609738 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.56858: Flags [P.], seq 4080:5058, ack 1809, win 1044, options [nop,nop,TS val 3916797519 ecr 3050124508], length 978
+20:21:57.611281 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.611283 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.613269 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.613270 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.613331 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.615320 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.615360 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.625045 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.625046 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627336 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627337 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627537 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627538 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627539 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627681 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627682 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.627812 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 32
+20:21:57.629522 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.629697 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.629698 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.629877 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.629878 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.629878 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.631348 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.631349 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.631566 IP maa03s40-in-f2.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.43659: UDP, length 28
+20:21:57.633367 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.633369 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.633452 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 33
+20:21:57.633698 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 618
+20:21:57.636371 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 1226
+20:21:57.636501 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 409
+20:21:57.636580 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 35
+20:21:57.639129 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 76
+20:21:57.651252 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 34
+20:21:57.652769 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 295
+20:21:57.654266 IP maddy-IdeaPad-Slim-3-15IAH8.56858 > maa03s40-in-f2.1e100.net.https: Flags [.], ack 5058, win 466, options [nop,nop,TS val 3050124585 ecr 3916797519], length 0
+20:21:57.654376 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 22
+20:21:57.664670 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:57.669855 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 38
+20:21:57.678702 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1226
+20:21:57.678765 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 1230
+20:21:57.678784 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 245
+20:21:57.690681 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 23
+20:21:57.711918 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 30
+20:21:57.729497 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 33
+20:21:57.738690 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 27
+20:21:57.761235 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 26
+20:21:57.763047 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:57.763075 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 303
+20:21:57.764982 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 32
+20:21:57.765763 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 199
+20:21:57.767423 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 24
+20:21:57.780389 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 37
+20:21:57.786587 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:57.786623 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 1230
+20:21:57.786633 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 231
+20:21:57.786661 IP6 maddy-IdeaPad-Slim-3-15IAH8.54077 > del11s15-in-x04.1e100.net.https: UDP, length 89
+20:21:57.789389 IP maddy-IdeaPad-Slim-3-15IAH8.57582 > _gateway.domain: 64687+ AAAA? dns-tunnel-check.googlezip.net. (48)
+20:21:57.789554 IP maddy-IdeaPad-Slim-3-15IAH8.52353 > _gateway.domain: 42330+ A? dns-tunnel-check.googlezip.net. (48)
+20:21:57.792054 IP6 maddy-IdeaPad-Slim-3-15IAH8.35898 > 2001:4860:4802:34::9d.https: Flags [S], seq 3633160721, win 64320, options [mss 1340,sackOK,TS val 1142587009 ecr 0,nop,wscale 7], length 0
+20:21:57.799405 IP maddy-IdeaPad-Slim-3-15IAH8.46806 > _gateway.domain: 11067+ Type65? ogads-pa.clients6.google.com. (46)
+20:21:57.805131 IP6 maddy-IdeaPad-Slim-3-15IAH8.60097 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:57.805175 IP6 maddy-IdeaPad-Slim-3-15IAH8.60097 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:57.826582 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.57582: 64687 1/0/0 AAAA 2001:4860:4802:34::9f (76)
+20:21:57.827622 IP maddy-IdeaPad-Slim-3-15IAH8.54097 > _gateway.domain: 49942+ PTR? d.9.0.0.0.0.0.0.0.0.0.0.0.0.0.0.4.3.0.0.2.0.8.4.0.6.8.4.1.0.0.2.ip6.arpa. (90)
+20:21:57.828570 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.52353: 42330 1/0/0 A 216.239.34.159 (64)
+20:21:57.830426 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.46806: 11067 0/1/0 (96)
+20:21:57.836165 IP6 2001:4860:4802:34::9d.https > maddy-IdeaPad-Slim-3-15IAH8.35898: Flags [S.], seq 2451939955, ack 3633160722, win 65535, options [mss 1300,sackOK,TS val 812680864 ecr 1142587009,nop,wscale 8], length 0
+20:21:57.836254 IP6 maddy-IdeaPad-Slim-3-15IAH8.35898 > 2001:4860:4802:34::9d.https: Flags [.], ack 1, win 503, options [nop,nop,TS val 1142587053 ecr 812680864], length 0
+20:21:57.837084 IP6 maddy-IdeaPad-Slim-3-15IAH8.35898 > 2001:4860:4802:34::9d.https: Flags [P.], seq 1:1827, ack 1, win 503, options [nop,nop,TS val 1142587054 ecr 812680864], length 1826
+20:21:57.841651 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60097: UDP, length 40
+20:21:57.846881 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60097: UDP, length 1230
+20:21:57.846883 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60097: UDP, length 1230
+20:21:57.846912 IP6 maa03s42-in-x0a.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.60097: UDP, length 1230
+20:21:57.847731 IP6 maddy-IdeaPad-Slim-3-15IAH8.60097 > maa03s42-in-x0a.1e100.net.https: UDP, length 1230
+20:21:57.865910 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 584
+20:21:57.865911 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 34
+20:21:57.865939 IP6 maa05s28-in-x0e.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.49737: UDP, length 197
+20:21:57.865956 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 25
+20:21:57.866368 IP6 maddy-IdeaPad-Slim-3-15IAH8.49737 > maa05s28-in-x0e.1e100.net.https: UDP, length 35
+20:21:57.869565 IP6 2001:4860:4802:34::9d.https > maddy-IdeaPad-Slim-3-15IAH8.35898: Flags [.], ack 1289, win 1050, options [nop,nop,TS val 812680899 ecr 1142587054], length 0
+20:21:57.871152 IP6 2001:4860:4802:34::9d.https > maddy-IdeaPad-Slim-3-15IAH8.35898: Flags [.], ack 1827, win 1048, options [nop,nop,TS val 812680901 ecr 1142587054], length 0
+20:21:57.873170 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 25
+20:21:57.877039 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1226
+20:21:57.877077 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.877077 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.879308 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+20:21:57.880407 IP6 maddy-IdeaPad-Slim-3-15IAH8.60097 > maa03s42-in-x0a.1e100.net.https: UDP, length 37
+20:21:57.881251 IP6 del11s15-in-x04.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.54077: UDP, length 1230
+
+
+3. To list the available network interfaces in tcpdump , use the option D as follows : 
+
+sudo tcpdump -D
+1.wlp0s20f3 [Up, Running, Wireless, Associated]
+2.any (Pseudo-device that captures on all interfaces) [Up, Running]
+3.lo [Up, Running, Loopback]
+4.bluetooth0 (Bluetooth adapter number 0) [Wireless, Association status unknown]
+5.bluetooth-monitor (Bluetooth Linux Monitor) [Wireless]
+6.nflog (Linux netfilter log (NFLOG) interface) [none]
+7.nfqueue (Linux netfilter queue (NFQUEUE) interface) [none]
+8.dbus-system (D-Bus system bus) [none]
+9.dbus-session (D-Bus session bus) [none]
+
+
+4. To capture the packets from the particular interface (here wifi interface is chosen) , use the option "i" and to restrict the count of packets being sniffed and presented , use the option "c" as follows: 
+
+sudo tcpdump -i wlp0s20f3 -c 4
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on wlp0s20f3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+20:23:00.471130 IP maddy-IdeaPad-Slim-3-15IAH8.50727 > _gateway.domain: 49676+ AAAA? android.clients.google.com. (44)
+20:23:00.471344 IP maddy-IdeaPad-Slim-3-15IAH8.41729 > _gateway.domain: 45496+ A? android.clients.google.com. (44)
+20:23:00.471447 IP maddy-IdeaPad-Slim-3-15IAH8.59097 > _gateway.domain: 50647+ Type65? android.clients.google.com. (44)
+20:23:00.477352 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.41729: 45496 17/0/0 CNAME android.l.google.com., A 142.250.182.174, A 142.250.77.238, A 142.250.77.206, A 216.58.200.206, A 142.250.207.238, A 142.250.207.206, A 142.250.195.14, A 142.250.194.238, A 142.250.194.206, A 142.250.193.238, A 142.250.193.206, A 142.250.193.78, A 142.250.193.46, A 142.250.193.14, A 142.250.192.238, A 142.250.192.206 (334)
+4 packets captured
+17 packets received by filter
+0 packets dropped by kernel
+
+
+5. To present the captured content in ascii form , "A" option can be used as follows : 
+
+sudo tcpdump -A -i wlp0s20f3 -c 4
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on wlp0s20f3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+20:23:23.543083 IP6 _gateway > maddy-IdeaPad-Slim-3-15IAH8: ICMP6, neighbor solicitation, who has maddy-IdeaPad-Slim-3-15IAH8, length 32
+`.... :.........L....w.%$	@..'F.....f......R....$	@..'F.....f.....N..w.%
+20:23:23.543134 IP6 maddy-IdeaPad-Slim-3-15IAH8 > _gateway: ICMP6, neighbor advertisement, tgt is maddy-IdeaPad-Slim-3-15IAH8, length 24
+`.....:.$	@..'F.....f...........L....w.%..e.@...$	@..'F.....f...
+20:23:23.620849 IP maddy-IdeaPad-Slim-3-15IAH8.46015 > _gateway.domain: 47074+ PTR? 6.a.3.f.b.8.6.6.3.0.5.c.8.b.2.8.7.1.6.4.7.2.0.1.4.f.0.4.9.0.4.2.ip6.arpa. (90)
+E..v<u..@.I...9s..9....5.b...............6.a.3.f.b.8.6.6.3.0.5.c.8.b.2.8.7.1.6.4.7.2.0.1.4.f.0.4.9.0.4.2.ip6.arpa.....
+20:23:23.659616 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.46015: 47074 NXDomain 0/1/0 (178)
+E...'.@.@..,..9...9s.5...................6.a.3.f.b.8.6.6.3.0.5.c.8.b.2.8.7.1.6.4.7.2.0.1.4.f.0.4.9.0.4.2.ip6.arpa......F.......q.L.ns.apnic.net.'read-txt-record-of-zone-first-dns-admin.i.<S.... .....	:.....
+4 packets captured
+8 packets received by filter
+0 packets dropped by kernel
+
+
+6. To present the captured content in hexadecimal format , "XX" option can be used as follows : 
+
+sudo tcpdump -XX -i wlp0s20f3 -c 4
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on wlp0s20f3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+20:23:38.842436 IP6 maddy-IdeaPad-Slim-3-15IAH8.41012 > del12s04-in-x03.1e100.net.https: Flags [.], ack 154200074, win 440, options [nop,nop,TS val 2064866364 ecr 1995288968], length 0
+	0x0000:  4ea1 1b77 b225 9065 8448 2989 86dd 6007  N..w.%.e.H)...`.
+	0x0010:  3540 0020 0640 2409 40f4 1027 4617 82b8  5@...@$.@..'F...
+	0x0020:  c503 668b f3a6 2404 6800 4002 0821 0000  ..f...$.h.@..!..
+	0x0030:  0000 0000 2003 a034 01bb d7ea 38cf 0930  .......4....8..0
+	0x0040:  e80a 8010 01b8 517b 0000 0101 080a 7b13  ......Q{......{.
+	0x0050:  5c3c 76ed b188                           \<v...
+20:23:38.878115 IP maddy-IdeaPad-Slim-3-15IAH8.34276 > _gateway.domain: 61581+ PTR? 6.a.3.f.b.8.6.6.3.0.5.c.8.b.2.8.7.1.6.4.7.2.0.1.4.f.0.4.9.0.4.2.ip6.arpa. (90)
+	0x0000:  4ea1 1b77 b225 9065 8448 2989 0800 4500  N..w.%.e.H)...E.
+	0x0010:  0076 65a9 0000 4011 2082 c0a8 3973 c0a8  .ve...@.....9s..
+	0x0020:  3988 85e4 0035 0062 f4bf f08d 0100 0001  9....5.b........
+	0x0030:  0000 0000 0000 0136 0161 0133 0166 0162  .......6.a.3.f.b
+	0x0040:  0138 0136 0136 0133 0130 0135 0163 0138  .8.6.6.3.0.5.c.8
+	0x0050:  0162 0132 0138 0137 0131 0136 0134 0137  .b.2.8.7.1.6.4.7
+	0x0060:  0132 0130 0131 0134 0166 0130 0134 0139  .2.0.1.4.f.0.4.9
+	0x0070:  0130 0134 0132 0369 7036 0461 7270 6100  .0.4.2.ip6.arpa.
+	0x0080:  000c 0001                                ....
+20:23:38.882464 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.34276: 61581 NXDomain 0/0/0 (90)
+	0x0000:  9065 8448 2989 4ea1 1b77 b225 0800 4500  .e.H).N..w.%..E.
+	0x0010:  0076 35df 4000 4011 104c c0a8 3988 c0a8  .v5.@.@..L..9...
+	0x0020:  3973 0035 85e4 0062 9f95 f08d 8183 0001  9s.5...b........
+	0x0030:  0000 0000 0000 0136 0161 0133 0166 0162  .......6.a.3.f.b
+	0x0040:  0138 0136 0136 0133 0130 0135 0163 0138  .8.6.6.3.0.5.c.8
+	0x0050:  0162 0132 0138 0137 0131 0136 0134 0137  .b.2.8.7.1.6.4.7
+	0x0060:  0132 0130 0131 0134 0166 0130 0134 0139  .2.0.1.4.f.0.4.9
+	0x0070:  0130 0134 0132 0369 7036 0461 7270 6100  .0.4.2.ip6.arpa.
+	0x0080:  000c 0001                                ....
+20:23:38.919271 IP6 del12s04-in-x03.1e100.net.https > maddy-IdeaPad-Slim-3-15IAH8.41012: Flags [.], ack 1, win 1019, options [nop,nop,TS val 1995335297 ecr 2064820041], length 0
+	0x0000:  9065 8448 2989 4ea1 1b77 b225 86dd 600e  .e.H).N..w.%..`.
+	0x0010:  a344 0020 0639 2404 6800 4002 0821 0000  .D...9$.h.@..!..
+	0x0020:  0000 0000 2003 2409 40f4 1027 4617 82b8  ......$.@..'F...
+	0x0030:  c503 668b f3a6 01bb a034 0930 e80a d7ea  ..f......4.0....
+	0x0040:  38d0 8010 03fb 7dbc 0000 0101 080a 76ee  8.....}.......v.
+	0x0050:  6681 7b12 a749                           f.{..I
+4 packets captured
+8 packets received by filter
+0 packets dropped by kernel
+
+
+7. To store the packet capture in pcap file in the specified location , "w" option can be used as follows : 
+
+sudo tcpdump -w $PWD/Desktop/samplecapture.pcap -c 4
+tcpdump: listening on wlp0s20f3, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+4 packets captured
+39 packets received by filter
+0 packets dropped by kernel
+
+
+
+8. To retrieve and present the captured content that got stored in the form of pcap file already , "r" option can be used as follows: 
+
+sudo tcpdump -r $PWD/Desktop/samplecapture.pcap
+reading from file /home/maddy/Desktop/samplecapture.pcap, link-type EN10MB (Ethernet), snapshot length 262144
+20:24:23.292185 IP maddy-IdeaPad-Slim-3-15IAH8.41603 > _gateway.domain: 28868+ AAAA? android.clients.google.com. (44)
+20:24:23.292431 IP maddy-IdeaPad-Slim-3-15IAH8.33502 > _gateway.domain: 36435+ A? android.clients.google.com. (44)
+20:24:23.292541 IP maddy-IdeaPad-Slim-3-15IAH8.56130 > _gateway.domain: 29818+ Type65? android.clients.google.com. (44)
+20:24:23.330653 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56130: 29818 1/1/0 CNAME android.l.google.com. (118)
+
+
+9. Filters can be applied while retrieving or capturing as follows : 
+
+sudo tcpdump -r $PWD/Desktop/samplecapture.pcap ip
+reading from file /home/maddy/Desktop/samplecapture.pcap, link-type EN10MB (Ethernet), snapshot length 262144
+20:24:23.292185 IP maddy-IdeaPad-Slim-3-15IAH8.41603 > _gateway.domain: 28868+ AAAA? android.clients.google.com. (44)
+20:24:23.292431 IP maddy-IdeaPad-Slim-3-15IAH8.33502 > _gateway.domain: 36435+ A? android.clients.google.com. (44)
+20:24:23.292541 IP maddy-IdeaPad-Slim-3-15IAH8.56130 > _gateway.domain: 29818+ Type65? android.clients.google.com. (44)
+20:24:23.330653 IP _gateway.domain > maddy-IdeaPad-Slim-3-15IAH8.56130: 29818 1/1/0 CNAME android.l.google.com. (118)
+
+

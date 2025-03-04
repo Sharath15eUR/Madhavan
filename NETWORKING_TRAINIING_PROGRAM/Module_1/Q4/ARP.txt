@@ -1,0 +1,47 @@
+ARP (Address Resolution Protocol) : 
+
+	It is used to provide MAC address if IP address is given. It is used in following scenarios
+	
+	1. Whenever any host in LAN wants to have communication across its LAN , it approaches default gateway by its MAC with its own private IP. Router's interface (acts as default gateway) does NAT and makes the entry of this private IP to router's IP : Port for public communication . Once , appropriate response in the IP of router's intended interface is obtained , it reverse maps to identify the IP of the target device and then it checks in its local ARP cache to find readily the MAC of target device. If not found , it floods ARP broadcast in that LAN and requests for its MAC and completes the sending process. 
+	
+	2. Any end host device will first check its own ARP cache to find the MAC of the destination device in case if destination is present inside same LAN. 
+	
+	3. ARP entry will be dynamically updated or statically entered. 
+	
+	
+	
+COMMANDS : 
+
+1. Using arp command without any option will show the IP address, Hardware type, MAC address , flags mask (C - complete , M - manually added entry , D - dynamically learned entry , I -incomplete and !- failed arp resolution - host is unreachable) and Interface name of current interface as follows :
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ arp 
+Address                  HWtype  HWaddress           Flags Mask            Iface
+_gateway                 ether   d2:0e:ad:74:3e:43   C                     wlp0s20f3
+
+
+
+2. Using "a" option with arp will list all types of entries as shown : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ arp -n
+Address                  HWtype  HWaddress           Flags Mask            Iface
+192.168.90.217           ether   d2:0e:ad:74:3e:43   C                     wlp0s20f3
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ arp -a
+
+
+3. Users can request the MAC of any particular IP directly. If available in cache , the corresponding entry will be provided as follows : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ arp _gateway
+Address                  HWtype  HWaddress           Flags Mask            Iface
+_gateway                 ether   d2:0e:ad:74:3e:43   C                     wlp0s20f3
+
+
+4. Alternative to arp command in ubuntu - ip neigh show . This is used as follows : 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ip neigh show
+192.168.90.217 dev wlp0s20f3 lladdr d2:0e:ad:74:3e:43 REACHABLE
+fe80::d00e:adff:fe74:3e43 dev wlp0s20f3 lladdr d2:0e:ad:74:3e:43 router DELAY
+2409:40f4:101d:c1b3::96 dev wlp0s20f3 lladdr d2:0e:ad:74:3e:43 router REACHABLE
+
+(in first row, an IP follwed by interface name and its status is given. In second row , it is identified as router with both IPv6 global and local link addresses are given with its status) 
+
+
