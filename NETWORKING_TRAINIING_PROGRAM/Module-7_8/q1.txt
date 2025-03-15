@@ -1,0 +1,127 @@
+TESTING THE CONNECTION AND NSLOOKUP COMMANDS FOR THE GIVEN WEBSITES :
+
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ping google.com
+PING google.com(maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e)) 56 data bytes
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=1 ttl=57 time=34.3 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=2 ttl=57 time=54.5 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=3 ttl=57 time=51.7 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=4 ttl=57 time=45.1 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=5 ttl=57 time=49.1 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=6 ttl=57 time=77.2 ms
+64 bytes from maa03s40-in-x0e.1e100.net (2404:6800:4007:825::200e): icmp_seq=7 ttl=57 time=74.2 ms
+^C
+--- google.com ping statistics ---
+7 packets transmitted, 7 received, 0% packet loss, time 6011ms
+rtt min/avg/max/mdev = 34.279/55.181/77.185/14.314 ms
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ nslookup www.google.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+Name:	www.google.com
+Address: 142.250.193.196
+Name:	www.google.com
+Address: 2404:6800:4002:81c::2004
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ping www.facebook.com
+PING www.facebook.com(edge-star-mini6-shv-02-maa2.facebook.com (2a03:2880:f137:182:face:b00c:0:25de)) 56 data bytes
+64 bytes from edge-star-mini6-shv-02-maa2.facebook.com (2a03:2880:f137:182:face:b00c:0:25de): icmp_seq=1 ttl=55 time=31.9 ms
+64 bytes from edge-star-mini6-shv-02-maa2.facebook.com (2a03:2880:f137:182:face:b00c:0:25de): icmp_seq=2 ttl=55 time=55.7 ms
+64 bytes from edge-star-mini6-shv-02-maa2.facebook.com (2a03:2880:f137:182:face:b00c:0:25de): icmp_seq=3 ttl=55 time=39.0 ms
+64 bytes from edge-star-mini6-shv-02-maa2.facebook.com (2a03:2880:f137:182:face:b00c:0:25de): icmp_seq=4 ttl=55 time=52.3 ms
+^C
+--- www.facebook.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 31.874/44.708/55.694/9.688 ms
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ nslookup www.facebook.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+www.facebook.com	canonical name = star-mini.c10r.facebook.com.
+Name:	star-mini.c10r.facebook.com
+Address: 157.240.192.35
+Name:	star-mini.c10r.facebook.com
+Address: 2a03:2880:f137:182:face:b00c:0:25de
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ping www.amazon.com
+PING www.amazon.com(2600:9000:2354:7000:7:49a5:5fd4:b121 (2600:9000:2354:7000:7:49a5:5fd4:b121)) 56 data bytes
+64 bytes from 2600:9000:2354:7000:7:49a5:5fd4:b121 (2600:9000:2354:7000:7:49a5:5fd4:b121): icmp_seq=1 ttl=56 time=48.2 ms
+64 bytes from 2600:9000:2354:7000:7:49a5:5fd4:b121 (2600:9000:2354:7000:7:49a5:5fd4:b121): icmp_seq=2 ttl=56 time=99.8 ms
+64 bytes from 2600:9000:2354:7000:7:49a5:5fd4:b121 (2600:9000:2354:7000:7:49a5:5fd4:b121): icmp_seq=3 ttl=56 time=42.8 ms
+64 bytes from 2600:9000:2354:7000:7:49a5:5fd4:b121 (2600:9000:2354:7000:7:49a5:5fd4:b121): icmp_seq=4 ttl=56 time=30.8 ms
+^C
+--- www.amazon.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3007ms
+rtt min/avg/max/mdev = 30.770/55.385/99.841/26.427 ms
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ nslookup www.amazon.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+www.amazon.com	canonical name = tp.47cf2c8c9-frontier.amazon.com.
+tp.47cf2c8c9-frontier.amazon.com	canonical name = d3ag4hukkh62yn.cloudfront.net.
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 108.159.17.235
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:4400:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:0:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:ca00:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:5800:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:ce00:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:2400:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:1a00:7:49a5:5fd4:b121
+Name:	d3ag4hukkh62yn.cloudfront.net
+Address: 2600:9000:2354:ea00:7:49a5:5fd4:b121
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ping www.github.com
+PING github.com (20.207.73.82) 56(84) bytes of data.
+64 bytes from 20.207.73.82 (20.207.73.82): icmp_seq=1 ttl=112 time=49.5 ms
+64 bytes from 20.207.73.82 (20.207.73.82): icmp_seq=2 ttl=112 time=74.6 ms
+64 bytes from 20.207.73.82 (20.207.73.82): icmp_seq=3 ttl=112 time=67.2 ms
+64 bytes from 20.207.73.82 (20.207.73.82): icmp_seq=4 ttl=112 time=65.0 ms
+^C
+--- github.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 49.498/64.062/74.551/9.119 ms
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ nslookup www.github.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+www.github.com	canonical name = github.com.
+Name:	github.com
+Address: 20.207.73.82
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ping www.cisco.com
+PING www.cisco.com(g2600-140f-0006-018a-0000-0000-0000-0b33.deploy.static.akamaitechnologies.com (2600:140f:6:18a::b33)) 56 data bytes
+64 bytes from g2600-140f-0006-018a-0000-0000-0000-0b33.deploy.static.akamaitechnologies.com (2600:140f:6:18a::b33): icmp_seq=1 ttl=57 time=39.6 ms
+64 bytes from g2600-140f-0006-018a-0000-0000-0000-0b33.deploy.static.akamaitechnologies.com (2600:140f:6:18a::b33): icmp_seq=2 ttl=57 time=43.3 ms
+64 bytes from g2600-140f-0006-018a-0000-0000-0000-0b33.deploy.static.akamaitechnologies.com (2600:140f:6:18a::b33): icmp_seq=3 ttl=57 time=41.1 ms
+64 bytes from g2600-140f-0006-018a-0000-0000-0000-0b33.deploy.static.akamaitechnologies.com (2600:140f:6:18a::b33): icmp_seq=4 ttl=57 time=45.2 ms
+^C
+--- www.cisco.com ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3005ms
+rtt min/avg/max/mdev = 39.579/42.299/45.155/2.119 ms
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ nslookup www.cisco.com
+Server:		127.0.0.53
+Address:	127.0.0.53#53
+
+Non-authoritative answer:
+www.cisco.com	canonical name = www.cisco.com.akadns.net.
+www.cisco.com.akadns.net	canonical name = wwwds.cisco.com.edgekey.net.
+wwwds.cisco.com.edgekey.net	canonical name = wwwds.cisco.com.edgekey.net.globalredir.akadns.net.
+wwwds.cisco.com.edgekey.net.globalredir.akadns.net	canonical name = e2867.dsca.akamaiedge.net.
+Name:	e2867.dsca.akamaiedge.net
+Address: 23.220.238.70
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:140f:6:1a7::b33
+Name:	e2867.dsca.akamaiedge.net
+Address: 2600:140f:6:18a::b33
