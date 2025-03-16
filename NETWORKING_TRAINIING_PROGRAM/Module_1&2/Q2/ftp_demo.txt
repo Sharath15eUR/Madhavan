@@ -1,0 +1,60 @@
+Host a FTP  server and try put and get operations :
+
+FTP:
+
+File Transfer Protocol is the network protocol that works on TCP/IP with default port 20 (21 in case of sending any commands), it lets the user get access to remote user's file system to get or put files from or to the remote user. 
+
+It is basically TCP based protocol that offers reliability in data transfer.
+
+syntax: ftp -p <other port number in case changed> <remote user's IP or hostname or localhost>
+
+when prompted, remote user's username and password must be given to get access to remote host's file system.
+
+after transferring files, "bye" or "exit" command can be given to terminate the ftp session.
+
+To configure ftp server, vsftpd (very secure ftp daemon) configuration file to be created and local enable (letting users sign in using username and password for ftp session), chroot_localuser (to let users only use home directory), controlling who can access the file system etc.
+
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sudo nano /etc/vsftpd.conf
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sudo systemctl restart vsftpd
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sudo systemctl status vsftpd
+● vsftpd.service - vsftpd FTP server
+     Loaded: loaded (/lib/systemd/system/vsftpd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-03-11 12:10:44 IST; 5s ago
+    Process: 5068 ExecStartPre=/bin/mkdir -p /var/run/vsftpd/empty (code=exited, status=0/SUCCESS)
+   Main PID: 5069 (vsftpd)
+      Tasks: 1 (limit: 18724)
+     Memory: 856.0K
+        CPU: 8ms
+     CGroup: /system.slice/vsftpd.service
+             └─5069 /usr/sbin/vsftpd /etc/vsftpd.conf
+
+Mar 11 12:10:44 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: vsftpd.service: Deactivated successfully.
+Mar 11 12:10:44 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: Stopped vsftpd FTP server.
+Mar 11 12:10:44 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: Starting vsftpd FTP server...
+Mar 11 12:10:44 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: Started vsftpd FTP server.
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ftp localhost
+Connected to localhost.
+220 (vsFTPd 3.0.5)
+Name (localhost:maddy): ftpuser
+331 Please specify the password.
+Password: 
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> put p.sh
+local: p.sh remote: p.sh
+229 Entering Extended Passive Mode (|||11045|)
+150 Ok to send data.
+100% |***************************************************************************************************************************************************************|    71      877.66 KiB/s    00:00 ETA
+226 Transfer complete.
+71 bytes sent in 00:00 (246.74 KiB/s)
+ftp> get p.sh
+local: p.sh remote: p.sh
+229 Entering Extended Passive Mode (|||38737|)
+150 Opening BINARY mode data connection for p.sh (71 bytes).
+100% |***************************************************************************************************************************************************************|    71        1.25 MiB/s    00:00 ETA
+226 Transfer complete.
+71 bytes received in 00:00 (219.41 KiB/s)
+ftp> exit
+221 Goodbye.

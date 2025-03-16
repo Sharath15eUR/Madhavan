@@ -1,0 +1,56 @@
+Host a SFTP server and try put and get operations : 
+
+SFTP :
+
+Secure file transfer protocol is completely encrypted protocol (uses SSH) which runs on port 22 by default and used to securely transfer files with remote host. 
+
+Unlike FTP, it uses single channel (22 port) to send both data and control signals. 
+
+It offers two methods to log in to remote host. 
+
+	1-> Password based (should know the remote user's password and username)
+	2-> key exchange method (one time process with two keys being generated and transferred and agreed upon hosts)
+
+In case of key exchange, both hosts should create private and public keys. client should append its public key to authorized keys in server machine and whenever it requests connection, server checks its public key and sends random challenge with its private key signed , client solves it using its private key and sends response to server. Once the response is validated, connection access will be granted. 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ sudo systemctl status ssh
+● ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: enabled)
+     Active: active (running) since Tue 2025-03-11 11:36:17 IST; 41min ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+   Main PID: 751 (sshd)
+      Tasks: 1 (limit: 18724)
+     Memory: 3.3M
+        CPU: 22ms
+     CGroup: /system.slice/ssh.service
+             └─751 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Mar 11 11:36:17 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: Starting OpenBSD Secure Shell server...
+Mar 11 11:36:17 maddy-IdeaPad-Slim-3-15IAH8 sshd[751]: Server listening on 0.0.0.0 port 22.
+Mar 11 11:36:17 maddy-IdeaPad-Slim-3-15IAH8 sshd[751]: Server listening on :: port 22.
+Mar 11 11:36:17 maddy-IdeaPad-Slim-3-15IAH8 systemd[1]: Started OpenBSD Secure Shell server.
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ whoami
+maddy
+
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ cd
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ sftp maddy@localhost
+maddy@localhost's password: 
+Connected to localhost.
+sftp> put p.sh /home/maddy/Documents
+Uploading p.sh to /home/maddy/Documents/p.sh
+p.sh                                                                                                                                                                      100%   71   117.4KB/s   00:00    
+sftp> ls /home/maddy/Documents/
+/home/maddy/Documents/JUST_OLD_FILES    /home/maddy/Documents/p.sh              /home/maddy/Documents/test              
+sftp> pwd
+Remote working directory: /home/maddy
+sftp> get p.sh /home/maddy/Desktop
+Fetching /home/maddy/p.sh to /home/maddy/Desktop/p.sh
+p.sh                                                                                                                                                                      100%   71    50.4KB/s   00:00    
+sftp> exit
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ ls Desktop
+ftp_demo.txt  NETWORKING_ASSIGNMENT  p.sh  samplecapture.pcap  viva.sh
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
