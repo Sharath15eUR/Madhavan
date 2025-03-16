@@ -1,0 +1,41 @@
+CONSIDER THE CASE OF HAVING A FOLDER WITH MULTIPLE FILES AND TO COPY THE ENTIRE DIRECTORY TO DESTINATION MACHINE PATH USING SCP COMMAND IN LINUX:
+
+scp <options> <directory of source to send> <username>:<dest directory in remote host>
+
+it requires authentication via password or via keys. 
+
+it is fully encrypted using SSH. Has server fingerprint file that will enter the access of remote users for future use. 
+
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~$ cd Desktop
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ mkdir -p scptest/src
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ mkdir -p scptest/dest
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls scptest
+dest  src
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ echo "Test file to check scp file transfer within localhost itself" > scptest/src/testfile1.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ echo "Test file to check scp file transfer within localhost itself second file !!" > scptest/src/testfile2.txt
+echo "Test file to check scp file transfer within localhost itself second file echo "Test file to check scp file transfer within localhost itself" > scptest/src/testfile1.txt" > scptest/src/testfile2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ echo "Test file to check scp file transfer within localhost itself 2" > scptest/src/testfile2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ mkdir -p scptest/src/dummydir
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ echo "HI HELLO!!" > scptest/src/dummydir
+echo "HI HELLOmkdir -p scptest/src/dummydir" > scptest/src/dummydir
+bash: scptest/src/dummydir: Is a directory
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ echo "HI HELLOmkdir -p scptest/src/dummydir" > scptest/src/dummydir/hellofile.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls
+connectiontest.txt  ftp_demo.txt  gnsbased_ping_capturing.pcapng  p.sh  samplecapture.pcap  scptest  sftp_demo.txt  traceroute_results.txt  viva.sh
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls scptest
+dest  src
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls  scptest/src
+dummydir  testfile1.txt  testfile2.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls scptest/src/dummydir
+hellofile.txt
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls scptest/dest
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ 
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ 
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ 
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ scp -r ~/Desktop/scptest/src/ localhost:~/Desktop/scptest/dest/
+maddy@localhost's password: 
+hellofile.txt                                                                                                                                                             100%   38    81.8KB/s   00:00    
+testfile2.txt                                                                                                                                                             100%   63    67.8KB/s   00:00    
+testfile1.txt                                                                                                                                                             100%   61   117.5KB/s   00:00    
+maddy@maddy-IdeaPad-Slim-3-15IAH8:~/Desktop$ ls scptest/dest
+src
