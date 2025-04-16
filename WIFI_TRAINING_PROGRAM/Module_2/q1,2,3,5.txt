@@ -1,0 +1,77 @@
+SPLIT MAC ARCHITECTURE :
+
+1. MAC (Media Access Control) is a sub-layer of the Data Link Layer (Layer 2) in the OSI model. It governs how data packets are                  placed on the medium and how devices on a local network gain access to the physical transmission medium.
+
+2. In general, MAC layer has four responsibilities such as MAC addressing, framing, fragmentation , access control. 
+
+3. Split MAC architecture primarily focusses on dividing the MAC layer responsibilities into entities especially in Lightweight Access Points , cloud managed Access points in enterprise Wifi and also in Public Wifi deployments.
+
+4. In general, Following are done by Access points:
+
+	1. Creating WLAN
+	2. Broadcasting SSID.
+	3. Advertising its capabilities such as BSSID, encryption and security protocols, Authentication, Channel in use,
+	   RF frequency in use and advanced technologies like RRM, DFS, MLO, BSS colouring etc.
+	4. Station Discovery
+	5. Authentication
+	6. Association.
+	7. Integration Service
+	8. Subclauses implementation like Security protocols, Access control list enforcement, VLAN segmentation, QoS based
+	   traffic maintenance. 
+
+5. With the help of WLC (Wireless LAN Controller), Light Weight APs (thin AP) splits the role of Access Points as Real time and Non real time functions those are:
+
+	1. Real time functions (handled by AP) - Time-critical operations like beacon generation, acknowledgment (ACKs)     		   retransmissions, encryption/decryption, and RTS/CTS.
+
+	2. Non real time functions (handled by controller) - Functions like association, authentication, roaming decisions, radio 	   resource management, and QoS policies.
+
+6. Light weight AP architecture thus offers Centralized control and configuration as opposed to Fat APs offering distributed control and configuration. Thereby increasing scalability and lowers the computation needed from AP.
+
+7. Global optimization can be done on WLC logic so eliminating the latency from AP in processing non real time functions along with crucial time sensitive functions.
+
+8. It simplifies Authentication, Association request and response, Band steering, beam forming, QoS, security rules enforcements, Firewall settings if needed, VLAN segmentations, Rogue AP and anamolies detection, Governs conventional internet communication, helps in firmware updates if needed for AP, DFS, RRM, MLO, Roaming etc.
+	
+9. For all above mentioned non real time functions, Light Weight AP uses CAPWAP (Control And Provisioning of Wireless Access Points) Data and Control tunnels.
+
+10. It is generally equipped with very light weight Firmware initially just to get IP and discover WLC and work with real time functions of access points thereby supporting Zero Touch Deployment (All initial configuration like SSID, channel configurations to be advertised to STAs even will be decided by WLC in this case).
+
+11. Wireless LAN controllers can be deployed in four different ways as per requirements. They are as follows:
+
+	1. On-premises Controller -> Here, Via switches, it will be connected to Access points.
+	2. Virtual controller -> Here, in Virtual Machine, Controller logic is developed and maintained reducing hardware overhead.
+	3. Embedded controller -> In any High end AP, Controller is embedded for optimized performance.
+	4. Cloud managed controller -> for easy management. 
+
+12. CAPWAP communication provides two tunnels such as Data plane (UDP port : 5247) for exchanging data between AP and WLC in forward and reverse cases with internet infrastructure and Control plane (UDP port : 5246) for exchanging control requests and responses.
+
+	1. When AP gets powered ON, it will not have any Configurations pre loaded as in Fat AP thus it cannot function as standalone
+	   unit.
+	2. Now, AP first sends DHCP discovery message and acquires IP , DNS, Default gateway, WLC IP (optionally) as DHCP offer.
+	3. Now, AP either sends broadcast message in the subnet to find WLC or sends target request to predefined WLC in flash
+           sending discovery request.
+	4. WLCs will reply with Discovery response stating its capabilities like Model number, Limit of AP etc.
+	5. This is followed by CAPWAP join request to WLC and followed by Join response to AP from WLP.
+	6. Now, control plane to be secured with DTLS (Datagram Transport Level Security) with ClientHello (with Client ciphers (
+	   encryption schemes) and versions) and ServerHello (chosen parameters from ClientHello) , Certificate Exchange or PSK ,
+           finished handshake.
+	7. If WLC's firmware is working with updated version with respect to AP, then optionally Image Download request and response.
+           then, AP will be rejoined by booting process.
+	8. Via control plane, AP configuration will be provided such as SSID, channel details etc.
+	9. As usual, Clients can get associated with this AP, authentication and all other non real time functions will be directed to
+	   WLC for further responses.
+	10. AP and WLC will periodically exchange and verify Keep Alive and echo packets for ensuring their existence.
+	11. Moreover, FlexConnect advancements can be done by splitting control information with WLC and bypassing controllers in case
+	    of data traffic.
+
+13. Wireless Access Points in lightweight mode can work on following modes in enterprise Wifi. They are as follows:
+	1. Default mode -> it conventionally serves Clients with Data and Control planes.
+	2. FlexConnect mode -> bypassing WLC for data communication.
+	3. Monitor mode -> used for Wireless Intrusion detection system to prevent Locations, interference etc.
+	4. Sniffer Mode -> in promiscuous mode, it acts as Wifi NIC and captures packets and exports to Capturing tools using Remote 
+	   capture protocol.
+	5. Spectrum Mode -> analyzes non wifi protocol usage and gives alerts with appropriate softwares.
+	6. Bridge Mode -> works either as WGB or client mode.
+	7. Repeater Mode -> it acts as Wifi extender or repeater.
+
+14. CAPWAP primarily comes under Layer-3 and Layer-4 of OSI. It needs IP address during AP - WLC configuration and Transport layer port for communication. 
+

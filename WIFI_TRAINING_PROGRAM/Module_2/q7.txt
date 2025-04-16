@@ -1,0 +1,28 @@
+WIRELESS LAN CONTROLLER IN WAN DEPLOYMENT : 
+
+1. It is crucial in the cases where WLC and APs are connected in remote sites thus WLC may get connected with AP via WAN connection. 
+
+2. CAPWAP protocol will also be connected via WAN only.
+
+3. In these cases, efficient WAN usage is crucial thus FlexConnect Mode can be associated with LWAP which switches data traffic that are non crucial locally without WLC interference. 
+
+4. VLAN decisions are given locally to APs and Local RADIUS and/or authentication cache is enabled thus it can independently act in cases of missing controller connectivity. 
+
+5. In general, in these cases, authentication, DTLS, heartbeat signals consume more frequent transmissions in WAN.
+
+--------------------------------------------------------------------
+
+1. Thus in case of WLC WAN deployments, FlexConnect mode is the wise choice in Lightweight APs. 
+
+2. Because, in local mode, AP forwards all traffic to WLC and doesn't switch locally leads to centralized decision making in all aspects. 
+
+3. Moreover, if WAN fails, AP become useless and bandwidth congestion may introduce more latency and also it is not scalable.
+
+4. FlexConnect mode is advantageous because it sends control plane traffic (heart beat, network health, management information, authentication, association etc.)to WLC over WAN but switches basic data traffic locally at the site (by bridging out the data to main network interface using appropriate backhaul).
+
+5. In most cases, Severity of data traffic decides whether to get switched locally or via WLC. For example, Secure traffic like VoIP is tunneled to WLC rather printer traffic is handled locally.
+
+6. In this mode, if WAN interface goes down, AP continues to broadcast SSID and authenticates users using cached credentials and local RADIUS implementation with predefined VLAN segmentation and data traffic local switching. It also supports roaming in case of WAN failure along with captive portal web authentication. 
+
+
+

@@ -1,0 +1,53 @@
+LIGHT WEIGHT ACCESS POINTS :
+
+1. It is a type of Access point which offloads some of its crucial functions to Wireless LAN Controller thereby optimizing power usage.
+
+2. Thus, it simply acts as Radio Front end and relay interface and does not operate independently as like Standalone or Fat AP.
+
+3. It takes care only the integration service and encryption with basic client association and offloads the advanced technologies like RRM, DFS, Security enforcements, VLAN segmentation and management, Monitoring, roaming , client authentication etc.
+
+4. In order to achieve this, LWAP uses CAPWAP communication. This basically forms a secured tunnel between AP and WLC with different UDP ports 5246 and 5247 maintaining control and data plane. 
+
+5. Once, it got powered ON, it does minimal processing that is getting IP from DHCP server and finds WLC via discovery message and establishes CAPWAP tunnel for data exchange and secures it with encryption schemes. 
+
+6. In case of mismatched firmware versions, WLC let the AP know and make it update to the current version.
+
+7. Thus, WLC takes following tasks:
+
+	1. SSID Broadcasting with and without VLAN
+	2. Channel assignment (RRM)
+	3. Transmit power, gain control
+	4. Security policies and protocol enforcements
+	5. Roaming optimization protocols
+	6. MLO, band steering
+
+8. In recent advancements, dynamic switching is possible that is data traffic bypasses WLC in case to reach main network infrastructure.
+
+--------------------------------------------------------------------------------------------------
+
+CLOUD MANAGED ACCESS POINTS : 
+
+1. It is similar to LWAP but differs in the way that the centralized controller is hosted in the cloud and Access points hold local intelligence.
+
+2. Cloud controllers provide configuration and policy management for AP.
+
+3. It differs from Light weight APs in the way that LWAP at any cost cannot function independently but cloud managed APs can self heal itself and process independently for short duration in which cloud server is not temporarily reachable. 
+
+4. AP here uses HTTPS (for data traffic . Local switching is done for Data traffic) and MQTT (for management traffic) without CAPWAP as in LWAP.
+
+5. When it is powered ON, it gets DHCP IP, followed by DNS lookup for cloud controller and both establishes secured HTTPS connection via certificate exchange with TLS and after verifying the firmware versions, AP pulls the necessary configurations from controller and starts serving its clients.
+
+6. It periodically sends Keep Alive packets or uplink health check packets to cloud controller for ensuring connectivity. 
+
+7. Management can be done remotely as it is cloud based. But in LWAP, on premises control is mandatory.
+
+8. In case of SNMP based health monitoring, in LWAP, health reports are taken locally and logs are sent to controller for analytics. But in cloud managed AP, real time network analysis is taken and analysed from cloud with real time dashboards. 
+
+9. It offers Zero Touch Deployment with provisioning thereby offering Plug and play. 
+
+
+
+
+
+
+

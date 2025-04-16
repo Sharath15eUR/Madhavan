@@ -1,0 +1,22 @@
+1. Basically Autonomous APs run its own wireless stack that is handling client authentication , encryption, security policies, vlan management, integration services etc.
+
+2. Each APs to be configured independently either via SSH or via inbuilt CLI with no automation may lead to misconfigurations due to human errors. 
+
+3. Each AP will have their own RF parameters set, it will not change based on the dynamic channel conditions by monitoring it leading to Interference, coverage loss etc. 
+
+4. Due to the lack of fast centralized control, roaming become less efficient and leads to frequent disconnections and re-authentications.
+
+5. Due to inconsistent Security policy enforcements, it might become impossible to detect Rogue APs in the network.
+
+6. Network analytics (gathering network insights for improved handling) (number of clients per AP and places where signals go weak) becomes impossible.
+
+7. Firmware updates are to be done on individual APs
+
+8. There will be not be any dynamic load balancing with RRM, DFS without central orchestration. 
+
+9. For any new APs being joined, every single process of configuration to be done independently without cloning. 
+
+10. Since all processes are done by APs itself, power optimization cannot be done. 
+
+11. It is tedious in mesh networks without auto adjustments based on Dynamic paths and AP failure. 
+

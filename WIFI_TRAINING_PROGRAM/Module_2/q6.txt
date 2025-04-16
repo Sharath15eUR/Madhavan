@@ -1,0 +1,46 @@
+LIGHT WEIGHT ACCESS POINT MODES :
+
+1. Local Mode -> Default mode where access point serves clients and handles RF
+
+2. FlexConnect Mode -> Allows AP to switch the data traffic locally instead of directing them towards WLC and then getting back the data locally using the WAN bandwidth unnecessarily.
+
+3. Sniffer Mode -> captures raw packets and forwards to packet analyzer tools for further analysis.
+
+4. Monitor mode -> For monitoring RF and detects interference or rogue AP detection. 
+
+5. Spectrum Mode -> analyzes the usage of shared medium for traffic congestion and technologies involved.
+
+6. Bridge/Mesh Mode -> APs are the part of bridge or mesh wifi network.
+
+-----------------------------------------------------------------------------------
+
+
+SNIFFER MODE : 
+
+1. It is used for troubleshooting , protocol analysis and capturing 802.11 traffic.
+
+2. It stops serving wireless clients in sniffer mode. WLC orders AP to act as wireless sniffer. 
+
+3. It requires the channel to be listened and destination port to export the captured raw packets (all types of frames) for analysis. This will be set by WLC.
+
+4. It tunes to the specified channel and starts receiving all RF frames. 
+
+5. It encapsulates the captured frames as UDP packets and sends to the Destination IP and Port.
+
+6. On the reception end, Lets say Wireshark will be made ready by listening to the same port for capturing all the raw frames. LWAP plugin might be required in wireshark for automatic content extraction from UDP packets. 
+
+Use case : Used in secured organizations and helps in Wrong or misclassification of legitimate AP to be rogue APs by analyzing the Frames from Wireless Intrusion Prevention System or Latency analysis by capturing association frames and authentication frames and roaming decision frames.
+
+--------------------------------------------------------------------------------------
+
+MONITOR MODE : 
+
+1. Instead of serving clients, it becomes RF sensor that analyzes the RF metrics and calculates interference, congestion and report it to WLc.
+
+2. It checks for Rogue AP by detecting unauthorized broadcasting in airspace. Thereby helping in mitigating Evil Twin attacks , DoS etc.  
+
+3. May collect information on client location using RSSI and Signal strength data.
+
+4. Reports noise floor, over utilization of channel by other technologies to WLC.
+
+Use case : To comply with RF standards, RF Audit can be initiated in any campus by setting any AP to be in Monitor mode that finds rogue APs , interference, and technology congestion over airspace, microwave usage that causes interferences , Unauthorized wireless device usage in restricted areas etc. 

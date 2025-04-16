@@ -1,0 +1,18 @@
+1. Light weight AP in local mode relies heavily on WLC (for authentication, association, policy enforcement, roaming, vlan assignments and managements, DHCP relay, Firewall, QoS) thereby both data and control messages are tunnelled accordingly to WLC and get routed or decided respectively. 
+
+2. Generally, WLC sends KeepAlive packets to APs for ensuring active connection via CAPWAP. 
+However, if WLC becomes disconnected, APs detect contiguous loss of keepalive messages and declares WLC to be unreachable for certain number of CAPWAP heartbeats missing.
+
+3. thus AP goes into Standby or orphan mode as it cannot handle even local data traffic independently in basic mode. 
+
+4. Clients may get disconnected since Data packets will not flow through main network infrastructure and DHCP offer may not get renewed if lease time expires (in case DHCP is managed by WLC)
+
+5. Client authentication will fail as it is handled by WLC. 
+
+6. No updated configuration will be received by AP based on dynamic channel condition.
+
+7. In this condition, AP will try to find new WLC by issuing discovery broadcast request across subnet or targeted request to primary, secondary WLC preconfigured. 
+
+8. However, it takes time as it needs to send Discovery request and expects response and followed by CAPWAP establishment and security schemes and begins its broadcasting.
+
+9. Thus it is advantageous to use FlexConnect Mode or using primary, secondary or tertiary WLCs with local authentication cache and vlan cache.  
