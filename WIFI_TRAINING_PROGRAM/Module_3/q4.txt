@@ -1,0 +1,20 @@
+OFDM FOR WLAN
+
+1. Since the channel as LTI filter smearing the symbols across time , ISI will be created thereby copies of the same signal with different delay may reach receiver. 
+
+2. OFDM combats this by splitting the channel to multiple subcarriers reducing the frequency selective nature.
+
+3. Offers much longer symbol duration (though expensive at receiver end) than that of delay spread.
+
+4. Attaching cyclic prefix with OFDM symbol converts works against ISI (linear to circular convolution)
+
+5. Even if some subcarrier data is lost, majority of the data reaches receiver. Moreover, Pilot sequences in the front of OFDM symbol helps in assessing the channel for receiver.
+
+6. Tight spectral packing of subcarriers when compared to conventional FDM by ensuring orthogonality between subcarriers.
+
+7. Adaptive bit loading uses higher modulation for good subcarriers dynamically.
+
+8. Receiver setup becomes single tap equalizer for each subcarrier.
+
+9. OFDM paves the way for advancements such as MU-MIMO enabling multiple streams per subcarrier, Beamforming for phase control per subcarrier, allocating different subcarriers to different users serving multiple users simultaneously, TWT scheduling of OFDM symbols for power saving.
+

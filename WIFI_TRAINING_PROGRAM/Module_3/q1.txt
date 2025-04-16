@@ -1,0 +1,71 @@
+DIFFERENT IEEE 802.11 PHY STANDARDS : 
+
+1) IEEE 802.11 - 1997 (Wifi - 1)
+
+a. It is the first ever wifi standard
+b. It uses 2.4 GHz wifi frequency
+c. Modulation techniques like DSSS (with 11 bit barker code and barker inversion for 0 bit), FHSS (2.5 times per second frequency change) were used.
+d. Maximum speed of 2 Mbps was supported with no security features and with no advancements.
+
+
+2) IEEE 802.11a - 1999
+
+a. Here, entirely different specifications was used. 
+b. It used 5 GHz wifi frequency for avoiding interference (technology congestion)
+c. It used OFDM modulation combined with other modulation schemes for subcarriers to improvise data rate. (here, the signal is divided into multiple subcarriers where each are frequency flat and orthogonal to each other avoiding ISI. Each subcarrier may have different modulation schemes improvising data rate. It also uses guard band to safeguard information in one subcarrier from another. It uses cyclic prefix technique that copies the last portion of OFDM symbol in front to protect it from the effect of multipath propogation)
+d. Therefore, maximum theoretical data rate was 54 Mbps.
+e. However, it supported very short range only due to maximum attenuation or power loss.
+
+
+3) IEEE 802.11b - 1999 (Wifi - 2)
+
+a. It was the first mass adopted wifi standard.
+b. It used DSSS modulation (Original data is multiplied with PN sequence called chip sequence and therefore widening the spectrum of data transmission effectively reducing the PSD thus enabling signal robustness against jamming identification. Moreover, signal can be decoded iff the exact PN sequence used is known in receiver side. It also makes the signal less affected by narrow band interference) with CCK (Complementary Code Keying - 8 bit Chip CC)
+c. Theoretical maximum data rate was 11 Mbps.
+d. It used 2.4 GHz wifi frequency.
+e. However, it was more susceptible to interference due to technological congestion that is technologies like microwave oven, Bluetooth has same centre frequency.
+
+4) IEEE 802.11g - 2003 (Wifi - 3)
+
+a. It was speed boosted version of both a and b substandards.
+b. It used 2.4 GHz wifi frequency as like in 802.11b
+c. It used OFDM modulation as like in 802.11a (52 carriers among which 4 for pilot sequences with 64 point FFT)
+d.  Theoretical maximum data rate was 54 Mbps.
+
+5) IEEE 802.11n - 2009 (Wifi - 4)
+
+a. It was entirely different standard since it introduced the idea of using dual wifi frequencies that is both 2.4 and 5 GHz frequencies in action.
+b. It used MIMO in the architecture for establishing multiple frequency fading parallel streams to serve many users without hassle. (4*4 MIMO) with frame aggregation and short guard interval (400 or 800 ns)
+c. It widens the channel bandwidth from 20 to 40 MHz therefore improvising data rate.
+d. It uses OFDM modulation scheme. 
+e. Theoretical maximum data rate was around 600 Mbps
+
+6) IEEE 802.11ac - 2013 (Wifi - 5)
+
+a. It was termed as "Gigabit Wifi Standard"
+b. It uses only 5 GHz wifi frequency
+c. It uses OFDM modulation but with 256 QAM for subcarriers to improvise data rate and stabilise SNR
+d. It introduced MU-MIMO in the architecture. (It uses multiple antenna array and creates that many independent spatial parallel streams and serves by beamforming)
+e. It introduced beamforming to focus Wifi signals towards intended clients.
+f. Theoretical maximum data rate was around 6.9 Gbps
+g. Channel got widened upto 80 / 160 MHz.
+
+7) IEEE 802.11ax - 2019 (Wifi - 6 and Wifi - 6E)
+
+a. It used triple frequencies that is 2.4, 5, 6 GHz (in wifi-6E substandard) wifi frequencies.
+b. It introduced OFDMA - with 1024 QAM for serving more users simultaneously without affecting the quality of connectivity
+c. It introduced BSS coloring - that is to avoid unnecessary deferring of transmissions therefore enhancing the channel utilization. (Generally, if APs uses same frequency channels nearby, it interferes with each other. Therefore, devices wait before transmission if they detect a signal from different network too. Each AP will be assigned a color - identifier. Now, devices check BSS color field in HE signal field in PHY header and if same color detected as of its BSS, it defers the transmission thereby showing regular behaviour if not, it treats it as external interference and if RSSI < CCA threshold, it may continue the transmission)
+d. It introduces TWT (Target Wake Time) to improvise the battery life of devices 
+e. Theoretical maximum data rate was around 9.6 Gbps
+
+
+8) IEEE 802.11be - Upcoming standard (Wifi - 7)
+
+a. It also uses triple frequencies as like in wifi-6 and 6E
+b. It uses OFDMA - 4096 QAM combination to maximise data rate. (it is the extension of OFDM which issues subcarriers (in the name of Resource Units) to users based on the data that need to be transmitted) providing QoS and best channel utilization.)
+c. It improvises MIMO for more spatial streams
+d. It uses MLO (Multi Link Operation) to use multiple channel with multiple frequencies for serving more clients with QoS (Wifi traditionally operates on single channel at a time. It uses Load balancing (packet scheduling) and aggregation to utilize the air media in the best manner. It is of two types - Simultaneous or active MLO - uses multiple bands at same time and alternating or switching MLO - that switches between links dynamically but one at a time). Types: 1. Link Aggregation - combining multiple channels for enhanced throughput
+2. Load balancing - shifts traffic across links dynamically but one at a time.
+3. Redundancy - if one link fails, it shifts traffic to other links. 
+e. Theoretical maximum data rate was around 40 Gbps
+f. Channel got widened upto 320 MHz.

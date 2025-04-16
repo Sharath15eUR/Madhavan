@@ -1,0 +1,126 @@
+PHYSICAL LAYER IN WIFI
+
+1. PHY layer is responsible for encoding and transmitting data over the wireless medium. It consists of three primary sublayers:
+
+PMD (Physical Medium Dependent) Sublayer – Handles modulation and RF signal transmission.
+
+PLCP (Physical Layer Convergence Procedure) Sublayer – Prepares data for transmission and manages synchronization.
+
+PHY Management – Deals with state control, channel sensing, and power control
+
+----------------------------------------------------------------------------------
+
+PMD sublayer:
+
+1. It is the underlaying PHY layer to transmit the information in air thereby deciding the crucial RF, modulation and coding parameters , FEC , Antenna processing, Power control, Carrier sensing and interacts directly with RF front end.
+
+----------------------------------------------------------------------------------
+
+PLCP sublayer:
+
+1. It is responsible for framing, synchronization, error detection.
+
+2. It comes before PMD defining all the required parameters and letting PMD complete the transmission by defining Modulation, RF parameters as discussed earlier.
+
+3. It accepts MAC layer payload (MSDU) and adds PHY layer header PPDU by adding headers, preamble. 
+
+-----------------------------------------------------------------------------------
+
+PHY management sublayer:
+
+1. It controls the overall operation of PHY layer by channel scanning, dynamic power, gain control, Interference avoidance, channel assessment etc. 
+
+------------------------------------------------------------------------------------
+
+1. PPDU varies with respect to Wifi generations.
+
+2. General format of PPDU is Preamble - Header - PSDU (MAC layer payload)
+
+3. In 802.11b :
+
+	* Preamble is split into Synchronization (helps receiver lock in the signal) and Start Frame Delimiter (to let receiver know the start of the frame)
+
+	* Header is split into Signal (Indicating the data rate), Service (Reserved for future use), Length (Entire frame length or duration), CRC (for PPDU)
+
+
+4. In 802.11g : 
+
+	* Preamble is split into STF (Short Training Field - for Time synchronization (important in OFDM since without which symbol cannot be retrieved.) using autocorrelation between STF and received symbol to find start of OFDM symbol probably the STF) and LTF (Long Training Field - for Channel estimation)
+
+	* Header is noted here as Signal field with Rate (indicating modulation scheme with data rate), Length (duration of packet), Parity (for error detection) and Tail (For signal integrity)
+
+
+5. In 802.11n (High Throughput PPDU) : 
+
+	* L-SIG (Legacy field) for Rate, length, modulation scheme
+
+	* L-STF (For AGC and timing sync)
+
+	* L-LTF (For channel estimation)
+
+	* HT Preamble - contains HT SIG1 (containing MCS, bandwidth, other transmission parameters) , HT STF (for MIMO channel estimation), HT LTF (for Equalization)
+
+	* HT Header - contains HT SIG2 (for guard interval, STBC, coding), Service (for scrambler initialization and future use), Length (PSDU length), Tail (Convolutional decoding), CRC (for PPDU)
+
+
+6. In 802.11ac (Very High Throughput PPDU)
+
+	* L-SIG (Legacy field) for Rate, length, modulation scheme
+
+	* L-STF (For AGC and timing sync)
+
+	* L-LTF (For channel estimation)
+
+	* VHT-SIGA1 and SIGA2 (for MCS, bandwidth, coding)
+
+	* VHT-STF (for channel estimation)
+
+	* VHT-LTF (for equalization)
+	
+	* VHT-SIGB (for MU-MIMO related information)
+
+	* VHT-Service (scrambler initialization and future use) 
+
+	* VHT-Length (frame length in bytes)
+
+	* VHT-Tail (for convolutional decoding)
+
+	* VHT-CRC (for error detection)
+
+
+7. In 802.11ax (High Efficiency PPDU)
+
+	* L-SIG (Legacy field) for Rate, length, modulation scheme
+
+	* L-STF (For AGC and timing sync)
+
+	* L-LTF (For channel estimation)
+
+	* VHT-SIG-A and SIG-B (for MCS, bandwidth, coding and OFDMA , MU-MIMO related information in SIG-B)
+
+	* VHT-STF (for AGC)
+
+	* VHT-LTF (for channel estimation)
+	
+	* VHT-Service (scrambler initialization and future use) 
+
+	* VHT-Length (frame length in bytes)
+
+	* VHT-Tail (for convolutional decoding)
+
+	* VHT-CRC (for error detection) 
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+MCS 
+
+1. It stands for Modulation, Coding Scheme, Spatial streams that ultimately defines the data rate (approximately throughput) of wifi transmission.
+
+2. Tradeoff between data rate and SNR requirement with respect to MCS Index.
+
+3. Formula for finding throughput is as follows:
+
+	throughput = ((number of data subcarriers) * (number of spatial streams) * (coding) * (number of coded bits per subcarrier per stream)) / (OFDM symbol duration + guard interval)
+
+
+ 

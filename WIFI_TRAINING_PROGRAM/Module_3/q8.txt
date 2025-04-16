@@ -1,0 +1,50 @@
+OFDM AND OFDMA
+
+OFDM : 
+
+1. Splits a high-rate stream into many low-rate parallel streams over orthogonal subcarriers.
+
+2. Single-user can only access the channel at a time.
+
+3. Introduced in 802.11a/g/n/ac
+
+4. Inefficient for small packets or multiple users.
+
+5. Works with smaller FFT sizes when compared to OFDMA
+
+6. Medium access is controlled by CSMA/CA (contention-based).
+
+7. Offers moderate spectral efficiency
+
+8. Latency increases in dense networks.
+
+9. Easier receiver sync when compared to that of OFDMA
+
+10. Ideal for high throughput single user devices
+
+
+OFDMA : 
+
+1. It allows multiple users to transmit/receive on different sets of subcarriers simultaneously
+
+2. Thereby Multi-user can access the channel at any time.
+
+3. Introduced in 802.11ax (Wi-Fi 6) and 802.11be (Wi-Fi 7)
+
+4. Scheduler divides subcarriers into Resource Units (RUs)
+
+5. Efficient for IoT, mixed traffic and dense network applications
+
+6. Parallel data transmission is enabled via RU which is split to users based on priority and data traffic.
+
+7. It uses higher FFT size when compared with that of OFDM for finer RU granularity
+
+8. Trigger Frames (from AP) allocate RUs for uplink and Multi-user Downlink is broadcast with specific RU mapping thereby controlled via centralized scheduling.
+
+9. Offers lower latency with higher spectral efficiency.
+
+10. Subcarrier Water filling (power control) algorithm per RU is possible
+
+11. But all users should be in perfect sync during reception which is complex to achieve.
+
+12. OFDMA is more scalable than OFDM.

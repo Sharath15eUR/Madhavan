@@ -1,0 +1,43 @@
+FHSS 
+
+1. Frequency Hopping Spread Spectrum.
+2. the carrier frequency of the transmitted signal hops (changes) over a wide range of frequencies with respect to time. 
+3. It differs from FDM in the way that FDM doesn't change the frequency with respect to time.
+4. It works based on PN sequence. 
+5. It offers resistance towards narrowband interference.
+6. It offers security by making it hard to intercept without knowing hop pattern.
+7. It uses primarily FSK as baseband modulator and then followed by Synthesizer which takes up the carrier frequency based on the current PN sequence and mapping among hop set.
+8. Slow Frequency Hopping is the type where symbol rate is greater than hop rate that is carrier frequency hop spans multiple bits.
+9. Whereas, fast frequency hopping is the type where symbol rate is lesser than hop rate that is multiple hops happen per symbol.
+10. It requires very tight synchronization between sender and receiver.
+11. It has some parameters like : 
+	1. Number of hop frequencies or hop set length
+	2. Hop rate - Hops per second
+	3. Symbol rate - symbols per seconds.
+	4. Chip duration - duration of one hop (duration of jump that depends on PN seq length)
+	5. Dwell time - time the signal stays on one frequency
+	6. Hop bandwidth - freq space occupied at any hop - 2 * del(f) + baseband bw
+	7. It trades spectral efficiency for security since it may occupy more bandwidth
+	
+12. Three solutions for synchronization between sender and receiver in FHSS. 
+	1. With separate control channel, transmitter may send information like seed, hop rate, starting timestamp etc. 
+	2. Blind sync - here, receiver detects energy in the possible spectrum and correlate with known symbol to get hop pattern.
+	3. For every hop, barker code like known pattern will be placed for recovering time and frequency misalignments if any.
+	
+
+
+DSSS:
+
+1. Direct Sequence Spread Spectrum Modulation techniques is one of the very popular modulation schemes that was in use in wifi technology. 
+2. It basically extends or widens the bandwidth of the data being transmitted to larger bandwidth
+3. Thereby reducing Power Spectral Density so as to avoid Narrow Band Interference
+4. This also lets the signal get hidden under environmental noise to avoid information tapping. 
+5. It also enables the security to avoid eavesdropping by using unique PN sequence per session/user to extend the bandwidth by multiplying each bit of information with this chip sequence and transmits with 2.4 GHz carrier signal (spreading )thus making it harder to decode without using proper PN sequence in receiver side.
+6. It also enables continuous transmission instead of FHSS which switches Frequency in realtime and expects frequency synchronization in receiver side for proper decoding.
+7. It also offers spreading gain while dispreading the information in receiver side. (10 log (chip rate / baseband data rate)) 
+8. It helps in achieving higher data rates like 11 Mbps in 802.11b wifi standard.
+9. However it offers limited scalability due to unique PN sequence requirement.
+10.It can’t avoid Wide Band Interference and inefficient spectrum usage
+
+
+	 

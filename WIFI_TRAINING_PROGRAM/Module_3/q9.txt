@@ -1,0 +1,36 @@
+MIMO and MU-MIMO :
+
+MIMO 
+
+1. Introduced in 802.11n (Wi-Fi 4)
+
+2. Offers spatial multiplexing for one user mainly if receiver understands channel (CSR) if not, then multiplexing efficiency can be compromised by using Alamouti-STBC
+
+3. Uses multiple transmit and receive antennas.
+
+4. Each spatial stream carries independent data.
+
+5. Streams are separated using spatial diversity and channel estimation at the receiver.
+
+6. Applied in both uplink and downlink streams.
+
+7. Receiver should estimate the channel and cancel the effect of interference to get data
+
+
+MU-MIMO
+
+1.  Introduced in 802.11ac (downlink), 802.11ax (DL/UL)
+
+2.  Offers Spatial multiplexing for multiple users
+
+3.  Multiple users per transmission interval
+
+4.  Efficient in dense networks
+
+5.  Access Point (AP) uses spatial beamforming to steer data to different users.
+
+6.  Requires advanced scheduling and Channel State Information (CSI).
+
+7.  Precoding will be required to get data with minimal cross talk.
+
+8.  Scheduler is required which groups users based on channel orthogonality, QoS etc.

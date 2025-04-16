@@ -1,0 +1,38 @@
+WIFI FREQUENCY BANDS
+
+1. Basic 2.4 GHz band which is only 83.5 MHz wide supporting primarily 20 MHz channels (sometimes 40 MHz in 802.11n)
+
+However, there are only 3 non-overlapping 20 MHz channels available in 2.4 GHz spectrum
+
+Offers higher range but lesser data rate , preferred in congested scenario.
+
+There are 14 channels in total within which 1, 6, 11 with 2414, 2437 and 2462 Hz being central frequencies are non overlapping.
+
+-----------------------------------------------------------------------------------------
+2. 5 GHz band - around 700 MHz wide spectrum with 20 (25+ non overlapping channels), 40 (2 Nos), 80 (4 Nos), 160 (8 Nos)MHz channels available by bonding.
+
+However, DFS is strictly required since radar intervention may occur in 5 GHz or surrounding frequencies. AP must vacate the channel withiin 10 seconds if so.
+
+Unlicensed National Information Infrastructure primarily focusses on this band and releases many channels for both indoor and outdoor purposes with and without DFS.
+
+-------------------------------------------------------------------------------------------
+
+3. 6 GHz band - around 1200 MHz wide spectrum with 50+ 20 MHz (233+) , 29 40 MHz , 14 80 MHz, 7 160 MHz and 3 320 MHz non overlapping channels.
+
+Without DFS requirement and any other interference.
+
+But severely affected by Range and attenuation.
+
+Makes it ideal for OFDMA , low latency AR/VR and high data rate applications.
+
+-------------------------------------------------------------------------------------
+
+4. 60 GHz band - around 14 GHz wider band with each channel being gigabit wide for ultra high speed data applications 
+
+But suitable only for very short range communications as it easily gets absorbed even by oxygen in atmosphere. 
+
+3 20,40 MHz , 25 80,160 MHz, 59 320 MHz, 4 2.16 GHz non overlapping channels
+
+
+
+ 

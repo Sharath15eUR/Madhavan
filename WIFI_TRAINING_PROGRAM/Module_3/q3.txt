@@ -1,0 +1,39 @@
+USE OF MODULATION SCHEMES IN PHY LAYER IN WIFI
+
+1. Modulation is the process of mapping input bits into symbols and eventually to waveforms for transmission.
+
+2. It defines how carrier waveform (final form in air) is manipulated (amplitude, phase, frequency)
+
+3. It defines the spectral efficiency by packing as many bits per Hz.
+
+4. Generally, any bit stream will be broken per K bits and will be mapped as symbol and corresponding I and Q phases are used (as per constellation diagram) and accordingly waveform will be chosen (I corresponds to cosine part and Q corresponds to sine part of the wave - s(t) = I cos(2 pi f t) - Q sin(2 pi f t)) - QAM (16,64,256,1024,4096 bits/symbol)
+
+5. In recent standards, this modulation techniques are combined with OFDM to increase bit rate in proportion to the number of sub carriers.
+
+6. In constellation map, if more points are included, more bits/symbol will be created thereby increasing data rate but at the cost of reduced distance between points in map therefore leading to less resistance to noise or SNR degradation. (therefore, higher modulation requires high SNR and higher coding rate)
+
+7. In prior to modulation, input bits will be undergoing source coding which is the process to reduce the redundant bits thereby compressing effective payload. Followed by, channel coding which is the process of adding redundant bits to the effective payload to detect and correct errors due to channel in receiver side. (channel coding - scrambling, interleaving, FEC)
+
+8. In modern network, Rate Adaptation algorithm is employed which chooses the modulation scheme dynamically based on channel condition (RSSI, SNR, PER)
+
+VARIOUS MODULATION SCHEMES USED ACROSS WIFI GENERATIONS
+
+1. Wifi - 1 and 3 uses primarily the DSSS and CCK (Complementary Code Keying - it works well with DSSS which takes the modulated symbol bits and groups it again to form more complex yet orthogonal series of symbols to be processed for reducing cross talks between symbols and proved to be offering more resistance)
+
+DSSS with 11 bit chip sequence and CCK for 5.5 and 11 Mbps
+
+2. Wifi - 2,3 (with DSSS, CCK),4 (with MIMO),5 (with MU-MIMO) uses OFDM primarily with varying subcarriers and sub modulations of subcarriers improvising data rate.
+
+OFDM with varying FFT sizes (64,128,512,1024,2048,4096) and varying submodulation schemes.
+
+More bits/symbols require very clear channel but offers higher spectral efficiency and data rate.
+
+OFDM is used to combat multipath fading, narrowband interference, frequency selectiveness.
+
+For input bitstream, it should be grouped into K bits and to be applied the appropriate modulation scheme to map to symbols and map each symbol to each subcarrier and leave spaces for Null and Pilot sequences in OFDM symbol (1 OFDM symbol = complex symbols based on modulation tech and nulls and pilot values), followed by IFFT for these freq domain data to convert to time domain data (each IFFT result data is the N number of sinusoid orthogonal subcarriers whose amplitude and phase are decided by the symbols from modulation scheme). 
+
+Cyclic prefix is attached for making sure that delayed copies due to frequency selectiveness or multipath propagation effects and finally, the samples are converted to analog and RF front end takes over and transmits with I and Q values splitted from these final samples in the air.
+
+3. Wifi - 6 (with MU-MIMO),7 (with MLO) uses OFDMA 
+
+Here, DCM (Dual Carrier Modulation) is introduced where same symbol is modulated across two subcarriers with conjugation for transmissions in lower SNR environments.

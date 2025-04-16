@@ -1,0 +1,20 @@
+GUARD INTERVAL : 
+
+1. It is the time duration inserted between consecutive OFDM symbols to let receiver absorb any delayed versions of previous symbols due to multipath propagation.
+
+2. Guard intervals will not be left empty or null rather in that duration, portion of OFDM (last) will be occupied in front for tackling the effect of tail overlapping.
+
+3. Guard interval = cyclic prefix duration which simplifies the FFT equalization in receiver.
+
+4. It will be effective iff duration of guard interval is greater than maximum delay spread.
+
+5. However, more guard interval may reduce throughput as it is occupied with redundant data.
+
+6. Thus choosing guard interval depends on the environment (Office - 200 to 300 nS since RMS delay spread is around 100 nS , Residential - 500 nS since RMS delay spread is around 200 nS, Stadium - 1 uS since RMS delay spread is around 500 nS)
+
+7. Short GI (0.4 uS) is acceptable in low multipath areas like small homes offering higher throughput.
+
+8. Standard GI (0.8 uS) in most indoor environments
+
+9. Long GI (1.6-3.2 uS) in stadiums
+
