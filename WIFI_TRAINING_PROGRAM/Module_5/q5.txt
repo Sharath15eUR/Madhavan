@@ -1,0 +1,24 @@
+COMPARING WIFI-6 AND WIFI-6E
+
+1. 2.4 and 5 GHz were used in wifi-6. But, 6 GHz was introduced in wifi-6E
+
+2. Wifi-6 can cover much higher range and supports good penetration but wifi-6E cannot support because of higher frequency and higher path loss. Therefore, it is well suited on open environments and line of sight shorter range communications.
+
+3. Bandwidth of around 500 MHz is allocated in wifi-6, but 1200 MHz in case of wifi-6E
+
+4. 25+ non-overlapping 20 MHz channels are available in wifi-6 but around 60+ non-overlapping 20 MHz channels are available in wifi-6E
+
+5. 5+ non-overlapping 80 MHz channels are available in wifi-6 but around 12+ non-overlapping 80 MHz channels are available in wifi-6E
+
+6. 2+ non-overlapping 160 MHz channels (with DFS) are available in wifi-6 but around 7+ non-overlapping clean 160 MHz channels are available in wifi-6E
+
+7. In case of MU-MIMO, many users (around 16 users) can be accommodated simultaneously with single AP. 
+
+8. In case of MLO, efficient channel aggregation can be done for extremely higher data rate in both uplink and downlink. 
+
+9. Use cases for wifi-6E , ultra HD video streaming, AR/VR applications, URLLC, Localisation etc. 
+
+10. Wifi-6E doesn't get affected by legacy wifi devices, Bluetooth, zigbee , microwave ovens operation in vicinity, DFS constraints, Other APs in co-channel (chances are less due to wider spectrum availability)
+
+
+

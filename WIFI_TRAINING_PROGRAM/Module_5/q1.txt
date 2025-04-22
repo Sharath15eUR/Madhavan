@@ -1,0 +1,39 @@
+WIFI - 6
+
+1. It follows IEEE 802.11ax standard
+2. It uses both 2.4 and 5 GHz frequencies
+3. It uses 1024-QAM OFDMA Modulation scheme
+4. Target Wake Time based power saving method was introduced
+5. BSS coloring was introduced to avoid unnecessary transmission deferring. 
+6. Improvises MU-MIMO by supporting around 16 users
+7. Offers enhanced security using WPA3
+
+WIFI - 6E
+
+1. Along with wifi-6 , it introduces 6 GHz frequency in use
+2. Thereby offers congestion less high bandwidth and lower latency services.
+3. Used channel bandwidth around 160 MHz
+4. Maximum theoretical speed of around 9.6 Gbps is expected.
+
+WIFI-7
+
+1. It follows IEEE 802.11be
+2. It uses 2.4,5,6 GHz frequencies
+3. Channel bandwidth is extended upto 320 MHz.
+4. It uses 4096 QAM with OFDMA
+5. It introduced MLO (Multi Link Operation - to transmit using multiple frequencies, channels sequentially based on decisions or actively on multiple channels or handling multi radio multi link operations)
+6. Maximum theoretical speed of around 9.6 Gbps is expected.
+
+------------------------------------------------------------------------------------
+
+Comparing these advanced generations to their previous counterparts. 
+
+Modulation scheme -> Older generation wifi used DSSS, FHSS, OFDM. but these advanced generations uses OFDMA which essentially splits contiguous set of subcarriers into RU and allocates RU dynamically based on priority of traffic or in scheduled manner (TBRA) thereby ensuring multiple users can send simultaneously with same contention and CSMA/CA
+
+Frequency of Use -> Older generation wifi uses 2.4 GHz and some newer standards may have used 5 GHz, but these advanced generation wifi uses all three 2.4,5,6 GHz frequencies thereby effectively increasing the channel bandwidth since wider frequencies are allocated in 6 GHz thereby boosting data rate and reduced interference due to other technologies.
+
+Advanced Scheme -> Older generations might not have introduced MIMO but these advanced generation wifi uses MU_MIMO that uses many spatial streams which are frequency flat and independent to each other thereby ensuring both multiplexing and diversity based on environment dynamics and receiver collobration (training sequences based channel analysis and feedback to transmitter for effective precoding and beamforming)
+
+Data rate -> Upto wifi-5 itself, maximum theoretical data rate was around 6.9 Gbps but due to the usage of OFDMA with MU-MIMO and some other advanced features, data rate got pushed to 9.6 Gbps and 40 Gbps (in wifi-7)
+
+BSS Coloring, TWT, MU-MIMO in both uplink and downlink, MLO, preamble puncturing for effective channel aggregation were utilized in recent wifi generations.

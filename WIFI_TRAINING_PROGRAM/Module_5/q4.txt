@@ -1,0 +1,21 @@
+6 GHz in Wifi-6E
+
+1. In case of 2.4 GHz band, it is technologically congested with either microwave oven or Bluetooth and etc. Moreover, it has only 3 non-overlapping channels for use.
+
+2. In case of 5 GHz band, though it has around 25+ non overlapping channels (might not suffice in dense environments though), those are subjected to Dynamic Frequency Selection due to radar interference.
+
+3. 6 GHz frequency often offers true 160 and 320 MHz ultra wide channels without congestion for high throughput applications.
+
+4. It offers around 60+ non overlapping 20 MHz channels for use. 
+
+5. Devices with 6 GHz wifi will not get interference from previous wifi generation devices due to new spectrum usage (green field)
+
+6. Recent wifi generations with 6 GHz support BSS coloring, TWT, MLO, OFDMA like advanced techniques promoting speed, safety, efficiency, QoS etc.
+
+7. Though it offers only very small range, within that range, very high throughput can be achieved and moreover this easily isolates very closely spaced networks.
+
+8. 6 GHz wifi generations use very advanced wifi security like SAE with Management frame protection techniques.
+
+9. It is even advantageous to combine it with IoT devices since they can communicate without interference with many RU possible reducing overall latency in communication.
+
+ 

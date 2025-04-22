@@ -1,0 +1,21 @@
+TARGET WAKE TIME
+
+1. One of the important enhancements in wifi-6 (802.11ax)
+
+2. Legacy wifi power save mode -> client enters doze state - AP buffers downlink frames -> client periodically (based on beacon frame interval), wakes up and sends PS-poll frame after checking TIM PVB in beacon frame to identify any buffered data in AP. 
+
+3. Unschedule Automatic Power save delivery is also one of the legacy power saving methods in 802.11e where client once after waking up sends trigger frame to AP and AP replies by sending multiple buffered frames in aggregated form and works per access category (as WMM power save)
+
+4. Target Wake Time allows stations to negotiate sleep and wake time with AP for optimized power consumption instead of waking up periodically based on beacon interval.
+
+5. If AP accepts TWT request from STA, it maintains TWT schedule per accepted STA.
+
+6. During TWT request itself, waking time and duration upto it remains active , TWT identifier for broadcast, will be negotiated with AP.
+
+7. During wake time, if trigger enabled, it listens for AP trigger for UL scheduling or else it directly sends and receives frames.
+
+8. TWT scheduling can be either implicit (once negotiated, periodically same schedule will be followed unless renegotiated) or explicit (varies per session)
+
+9. It is particularly beneficial for IoT devices since they are mostly battery operated therefore strict power conservation to be maintained. In this case, they can negotiate with AP a very comfortable timing as per data collection and processing requirement and it can optionally set trigger access to UL communication if needed. Thus, it offers better QoS and reduces unwanted contention and in the perspective of AP, scalability can be improved with optimized spectrum usage. 
+
+10. Real time use case : IoT enabled smart energy meter which may need to communicate every 30 minutes and the duration of communication may be around 2 seconds then TWT will be the effective choice since it can be uninterrupted for around 29 minutes 58 seconds leading to massive power saving. 

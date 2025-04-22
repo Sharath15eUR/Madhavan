@@ -1,0 +1,55 @@
+WIFI ROAMING : 
+
+1. It is the process by which a wireless client seamlessly transitions its connection from one AP to another within same network as it moves through different coverage areas.
+
+2. Goal is to maintain uninterrupted connectivity for clients so that real time data access continue without noticeable disruptions.
+
+3. Intra Controller Roaming occurs when client moves between APs managed by same controller. Here, controller facilitates the handoff and maintains the client's IP and session. It preserves authentication information during transition (over the air) and reduces latency during transition.
+
+4. Inter controller roaming happens client moves between APs managed by different controllers within same network in this case to maintain connectivity complex communications happen between controllers via EoIP tunnel with actual controller as anchor and target controller as foreign and tries to maintain same IP by tunnelling all communication from station to anchor via foreign controller. 
+
+5. Mostly in centralized management (controller based), roaming standards are applied. That is, 802.11k,v,r standards for roaming optimization.
+
+
+
+802.11k
+
+1. It enables current AP to provide reports on neighbouring APs including details like channel number, frequency, SSID, signal strength and so on.
+
+2. Clients can quickly evaluate the obtained report from AP instead of scanning in all channels for valid AP reducing its performance. 
+
+3. Improvised decision making from AP via report however, final decision to be made by stations to roam into.
+
+4. Stations whenever it senses the weak signals from AP (RSSI) or missing beacons or persistent packet missing , it initiates roaming and seeks help from AP by asking for neighbour report.
+
+5. During roaming, if any information intended to that particular station is obtained by AP, then it buffers those and relays those to new AP via DS over the air ensuring no data loss. 
+
+
+
+802.11v
+
+1. It is the power optimization and network management substandard that heavily helps on wifi roaming. It is also called as wireless network management standard.
+
+2. It enables network to communicate the network assisted decisions on client association to stations to ensure intelligent roaming with optimal power and load management. 
+
+3. Here, AP sends BSS transition management request frame to clients to steer them to better APs with strong signal and less load after detecting weak signal or request from high priority client to join but AP has much load.
+
+4. Reduces decision making latency and also scanning latency
+
+5. It also filters the traffic what client wants to receive at that instant.
+
+6. To ensure indoor navigation tracking or coordinated roaming optimization, clients may exchange timing info for synchronization and location tracking.
+
+
+
+802.11r
+
+1. It also stands for Fast BSS Transition.
+
+2. For time critical applications, re-authentication with new AP is not acceptable since it consumes significant time. For this, pre-authentication happens while roaming and efficient IP and session management based on inter and intra controller roaming happens.
+
+3. Over the air FT -> here, client directly performs fast transition with target AP by sending authentication request expecting response and sending reassociation request and expecting response , for this keys were already negotiated based on previous APs authentication.
+
+4. Over the DS FT -> STA doesn't directly communicate with target AP but via current AP. It sends FT auth req to current AP which forwards the same to target AP and responses will also be relayed via current AP. 4-tier Key hierarchy is used here for fast transition. MSK is derived in previous RADIUS server authentication. PMK is derived from MSK and provided to AP during association. PMK-R0 is derived from PMK and held by key holder typically original AP. PMK-R1 is derived by original AP and distributed to neighbouring APs (under same mobility domain) for fast roaming. 
+
+5. In over the DS FT case, During FT auth req and response, FT Information element was exchanged. Here, necessary credentials like mobility domain, sta-mac, identifier for who holding R0 key will be known by sta and it locally computes R0 and R1 key during roaming which will be used in target AP association thereby reducing latency.

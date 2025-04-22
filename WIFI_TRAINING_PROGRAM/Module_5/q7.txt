@@ -1,0 +1,17 @@
+MLO
+
+1. It stands for Multi Link Operation. It is one of the groundbreaking innovation in wifi-7.
+
+2. It allows devices to establish and utilize multiple wireless links simultaneously across different frequency bands and channels.
+
+3. It enhances concurrent data transmission, throughput, reduces latency.
+
+4. Simultaneous Transmit Receive MLO (STR) -> it leverages full potential of MLO by simultaneously using different frequency bands using Dual radios. Use case : AR/VR devices that streams HD video in one channel and receives user interaction in other ensuring seamless experience. 
+
+5. Non-STR MLO switches rapidly between transmission and reception links and it is advantageous in some configurations than single link operating devices.
+
+6. Effective throughput is approximately the sum of capacity across each possible links. 
+
+7. It is also possible to do Load balancing with channel aggregation using multiple links or bandsteering based on environment dynamics and data rate requirements. 
+
+8. It enables data transmission even if one link is interrupted via preamble puncturing in channel aggregation. 

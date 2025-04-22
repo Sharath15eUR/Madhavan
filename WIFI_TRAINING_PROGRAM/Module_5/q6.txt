@@ -1,0 +1,17 @@
+MAJOR INNOVATIONS IN WIFI-7 
+
+1. Introduction of 320 MHz channels for higher throughput in single transmission and in high bandwidth demanding real time applications like AR/VR applications
+
+2. 4096-QAM was used along with OFDMA to encode each symbol using 12 bits in input.
+
+3. Multi Link Operation technique enables devices to simultaneously transmit and receive data across multiple frequency bands using Multilink Multiradio concept. It also ensures devices can switch between bands based on priority, data to be transmitted etc.
+
+4. Enhanced MU-MIMO increases the number of available spatial streams to be 16 from 8.
+
+5. Single user can be allocated multiple RUs based on data within same channel reducing latency
+
+6. It enables preamble puncturing so to use wider channels even when parts of the spectrum are corrupted. 
+
+7. BSS coloring and TWT got improvised for efficient data delivery.
+
+8. Time Sensitive Networking ensures deterministic data delivery with low latency by using OFDMA, MU-MIMO, TBRA , Time sync support. 

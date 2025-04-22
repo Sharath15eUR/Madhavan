@@ -1,0 +1,21 @@
+OFDMA 
+
+1. Stands for Orthogonal Frequency Division Multiple Access. It is the simple extension of OFDM.
+
+2. In OFDM, all subcarriers generated were used by single user at a time leading to reduced efficiency in terms of multi user support.
+
+3. In OFDMA, in the name of Resource Units, users will be allocated with some contiguous subcarriers for use. 
+
+4. APs send Trigger frames in TBRA for Uplink OFDMA thereby assigning appropriate RU, timing, power settings for which clients respond in their allocated time slot. (Uplink)
+
+5. It sends common preamble followed by each user's data in their assigned RU. (Downlink)
+
+6. It is more useful in the case of IoT transmission where many devices send small packets may not occupy the entire channel in OFDMA.
+
+7. Since multiple devices can transmit simultaneously, latency is avoided leading to predictable performance.
+
+8. RU based TWT allocation can be done for power saving.
+
+9. Replaces CSMA/CA + backoff for STAs with Uplink scheduling.
+
+10. QoS is enhanced by Dynamic RU allocation.
