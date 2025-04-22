@@ -1,0 +1,49 @@
+FRAME FORMAT FOR WIFI
+
+1. Generally, for Data link layer in OSI, frame format follows common structure. That is, 
+
+	MAC Header | Frame body | FCS
+
+2. Frame body and FCS (Wifi follows CRC) remains the same but Frame header changes for wifi
+
+3. Wifi frame format is given below:
+
+	Frame control (2) | Duration/ID (2) | Add-1 (6) | Add-2 (6) | Add-3 (6) | Seq No (2) | Add-3 (6) | QoS (2) | HT field (2) | Frame body (0-2304 with overhead for security) | FCS (4)
+
+3. Frame control field in wifi contains the following:
+
+	1. Protocol - 00 for wifi
+	2. Type - Defines whether the frame is Management (00), Control (01), or Data (10)
+	3. Subtype - Identifies the specific type of frame (e.g., Beacon, RTS, CTS, Data)
+	4. To DS - Set if the frame is heading to the Distribution System (AP)
+	5. From DS - Set if the frame is coming from the Distribution System (AP)
+	6. More Fragments - Set if the frame is fragmented
+	7. Retry -  Set if this is a retransmitted frame
+	8. Power Management - Indicates whether the STA is in power-saving mode
+	9. More Data - 	Indicates additional buffered data at the AP for power-saving STAs
+	10.Protected Frame - Set if the frame is encrypted (WEP, WPA, WPA2)
+	11.Order - Set for strictly ordered frames
+
+To DS=0 and From DS=1: A1-Dest STA , A2-BSSID, A3-Actual sender in DS
+To DS=1 and From DS=0: A1-BSSID , A2 - Source-STA , A3 - Actual destination in DS. 
+To DS=0 and From DS=0: Frame for AP, Frame for broadcast, DLS
+To DS=1 and From DS=1: in Mesh networking
+
+4. Duration/ID : 
+
+	1. In conventional frames, it represents NAV (Network Allocation Vector) to reserve channel and to let other users know that channel will be reserved for that duration. 
+	2. In power save poll frames, it contains Association ID 
+
+5. ADD-1: It represents the immediate destination or recipient
+
+6. ADD-2: It represents the immediate source
+
+7. ADD-3: it represents either actual destination or actual source 
+
+8. Seq No: In case of fragmentation, it represents which seq frames are being fragmented
+
+9. ADD-4 : Used in the case of multi-hop routing.
+
+10. Frame body - 0 to 2304 bytes with either layer-3 data or encrypted data or QoS data.
+
+11. FCS - CRC-32 bits for frame integrity. 

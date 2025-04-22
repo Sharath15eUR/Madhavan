@@ -1,0 +1,61 @@
+MEDIUM ACCESS CONTROL TECHNIQUES 
+
+1. It is impossible to detect collisions in wireless environment. Therefore, best can be done is to avoid collision in the first place. 
+
+2. To coordinate access to the shared wireless medium, IEEE 802.11 defines two primary MAC coordination functions:
+
+Distributed Coordination Function (DCF) – A contention-based access method using CSMA/CA.
+
+Point Coordination Function (PCF) – A polling-based method used in infrastructure networks.
+
+Now, there is another enhancement called EDCA (Enhanced Distributed Channel Access)
+
+3. Distributed Coordination Function is the default MAC coordination function which works based on contention window and allows stations to use CSMA/CA.
+
+	1. At first, it does Virtual Carrier Sensing - a process in which all STAs with their NAV timer waits for its expiry. This NAV would have been advertised by RTS,CTS frame by other STA to transmit data in the shared media.
+
+	2. Once the channel is free by virtual sensing, It does physical sensing by sensing the energy of the live media via RSSI and compares it with CCA (Clear Channel Assessment threshold). If RSSI is lesser than CCA threshold, STA may proceed with its NAV advertisement via RTS and CTS and starts sending its payload. 
+
+	3. If RSSI (First Signal detect happens which matches for wifi preamble and expects it to be 4 db more than noise floor and followed by energy detect which generally checks for the presence of similar signals from other technologies like oven, Bluetooth etc) is slightly comparable to CCA, but lesser than Overlapping BSS power detection threshold with different BSS color in HE signal field in PHY header, then also, it may proceed with its transmission. 
+
+	4. However, in all other cases, it is advisable for STAs to defer transmission and wait for random contention window time and check again.
+
+	5. All transmissions expect ACK back to confirm the delivery of packets since, wireless media is unpredictable. 
+
+	6. Once STA decides to begin transmission, it waits for DIFS (Distributed Inter Frame Space) time followed by Random Contention window value * Slot time (fixed by frequency in use) (cw size is from 0 to 1023)
+
+ it first sends RTS stating its properties, length of information to be exchanged, duration for channel occupation , target recipient etc.
+
+	7. Target recipient upon receiving RTS will acknowledge by echoing it in the form of CTS. 
+
+	8. Hidden node problem (two stations out of coverage to each other but has common station may transmit data to common station at same time leads to interference) can be avoided by using RTS,CTS pair. That is, a node which could not hear RTS but hear CTS being sent from common station should defer its transmission to that node. 
+
+	9. Exposed node problem (just because another node is present in its coverage, it doesn't mean that a node should always defer its transmission rather it can check the Target AP and Target BSS and signal strength) can be avoided by the fact that RTS will be heard by the node but not CTS. so it understands that target is not in its reach so it can start transmission. 
+
+	10. SIFS (Short Inter Frame Space) is for ACK, CTS will be considered. 
+
+	11. EIFS (Extended IFS) for persistent collisions which leads to increased contention window size. 
+	
+
+
+POINT COORDINATION FUNCTION : 
+
+	1. Operates only in infrastructure mode where AP as centralized controller eliminates contention and reserves the entire medium.
+
+	2. AP starts polling stations in round robin fashion without considering QoS.
+
+	3. AP periodically sends CF-poll frame to stations asking and granting permission to transmit
+
+	4. Stations respond with data or indicate they have nothing to send.
+
+	5. AP here uses PIFS (PCF IFS) to gain priority over medium using PCF.
+
+
+
+EDCA:
+
+1. It is the simple extension of DCF by considering QoS. 
+
+2. It provides Arbitration IFS like DIFS which is short for high priority tasks. Similarly, contention window is ensured to be minimum for higher priority tasks.
+
+3. Moreover, high priority tasks will get more Transmission opportunity than lower priority tasks that is more duration. 

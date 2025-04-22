@@ -1,0 +1,46 @@
+POWER SAVING IN WIFI MAC LAYER
+
+1. Wi-Fi radios consume a lot of power, especially when constantly transmitting, receiving, or even just listening to the channel. 
+
+2. Power saving at the MAC layer allows devices to turn off their radio during idle times or schedule wake-up times to listen only when necessary.
+
+3. Unlike cellular radios, Wi-Fi lacks a centralized controller, so each device must actively manage its power.
+
+4. Apps and services expect constant internet access.
+
+5. Even when idle, the device needs to stay associated to the AP.
+
+6. In most of the real world cases, burst data transfer happens and not continuous thereby leaving space for idle periods so that STA can sleep.
+
+7. Legacy Power Save Mode
+
+	1. Client may send QoS null frame to AP with power management bit set.
+	2. AP receives the frame and understands that STA is going to sleep.
+	3. AP starts buffering all the frames intended to it. 
+	4. In every beacon frame, there is a field called TIM (Traffic Indication Map - Partial Virtual Bitmap) that contains fields for all associated clients. 
+	5. If STA finds its AID field set, then it understands that it has buffered data.
+	6. It sends PS-Poll frame to AP to retrieve data.
+	7. AP starts replying with buffered frames and indicate if more data present.
+	8. Client after getting all buffered frames go to sleep again.
+
+8. Unscheduled Automatic Power Save Delivery
+
+	1. Supports low latency applications.
+	2. APs push data once triggered without Ps-poll.
+	3. frames are here grouped as Service periods.
+	4. There are 4 AC like voice, video, background and best effort access categories.
+	5. In this mode, once STA informs for sleep mode, AP buffers data in terms of AC
+	6. STA after waking up sends trigger frame with appropriate AC and AP will send the appropriate Burst of frames.
+	7. Last frame will be marked as End of Service Period and then sleep immediately.
+
+9. Target Wake Time
+
+	1. Client negotiates TWT agreement with AP. AP may reject or accept TWT agreement with any suggestions or changes.
+	2. Agreement includes wake interval (how much time after which it wakes up)
+	3. Wake duration is the time the STA is awake and listens. If AC got Delivery enabled, automatically AP senses wake time and sends. otherwise, STA will send QoS null frame to get data. 
+	4. During wake time, any communication can happen between AP and STA.
+
+10. WoWAN (Wake on WAN)
+
+	1. Similar technology in waking up but differs in the way that magic word will be transmitted by APs in case of any data transfer so that device will wake up from semi-sleep state
+

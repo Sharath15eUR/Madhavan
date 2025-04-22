@@ -1,0 +1,37 @@
+BLOCK ACK
+
+1. In traditional Wi-Fi , every frame sent by a sender was immediately acknowledged by the receiver using an ACK frame. This was inefficient, especially when Data rates are high, Large numbers of small packets are sent, Latency and overhead are critical.
+
+2. To address this, Block ACK was introduced in IEEE 802.11e.
+
+3. Instead of sending an ACK for every frame, the receiver buffers multiple data frames from the sender and sends a single Block ACK frame that acknowledges multiple MPDUs at once.
+
+4. There are implicit and explicit block ACK possible. In explicit block ACK, prior setup agreement should be made and to be negotiated by using Add Block ACK Agreement (ADDBA) request frame by sender which include starting seq number, buffer size, timeout for ack, traffic identifier (related to QoS that may have different block ACK params depending on traffic streams). 
+
+5. works well with A-MPDU with any seq number with agreed block size.
+
+6. Receiver after receiving buffered frames either immediately or after processing frames, sends block ACK with particular sequence number and bitmap stating which frames it lost.
+
+7. Thereby retransmitting the selective missed frames in aggregated blocks instead of sending whole aggregated block. 
+
+8. After sometime, if block ACK scheme is not needed, it should terminate by sending DELBA. 
+
+
+
+MAC AGGREGATION
+
+1. It is the efficient concept by which redundancy can be reduced in frame transmission and also enhances block ack.
+
+2. It increases throughput and reduces congestion , interframe spaces and also promotes time sensitive networking.
+
+3. In single transmission, under single header, multiple frames can be sent using wifi protocol.
+
+4. In case of no aggregation, each frame will have both PHY and MAC header and after each frame, SIFS will be considered.
+
+4. There are three types of MAC AGGREGATION. They are
+
+	1. A-MPDU aggregation - Here, under single PHY hdr, multiple frames with MAC headers for each frame will be sent as single entity therefore BLOCK ack after single SIFS can be expected.
+
+	2. A-MSDU Aggregation - Under single PHY and MAC headers, multiple frames will be embedded. though looks efficient, it might be difficult to organize and retransmit incase of any errors. 
+
+	3. A-MSDU inside A-MPDU aggregation - it is the mix of above two types by which under single PHY hdr, frames will be grouped such that each group contains one MAC header making it easier to track and organize.

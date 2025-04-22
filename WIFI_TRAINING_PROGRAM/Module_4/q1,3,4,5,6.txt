@@ -1,0 +1,88 @@
+MAC LAYER IN WIFI : 
+
+1. Stands for Medium Access Control layer which plays crucial role by doing following functions:
+
+	1. Framing
+	2. Fragmentation
+	3. MAC addressing
+	4. Access Control
+	5. Error control
+
+2. It is the part of Data Link Layer in OSI Model. It is the lower sublayer of Data link layer that works in vicinity with PHY layer.
+
+3. Especially in Wifi (IEEE 802.11), it splits up the tasks into three planes. They are, 
+
+	1. Management plane
+	2. Control plane
+	3. Data plane
+
+4. Management Plane of MAC
+
+	1. It helps right from the establishment of WLAN and followed by authentication, association and maintenance of STA and AP in WLAN.
+	2. It does following functionalities:
+
+a. Scanning - It is the process by which STA and AP knows (discovers) each other and further gets connected. There are two types in Scanning. They are:
+
+1. Active Scanning - a process in which STA initiates the AP discovery by sending Probe requests either targeted towards particular SSID or as a broadcast message in identifying AP. In the probe request, all the capabilities of STA will be advertised to AP including Data rate, security schemes, Authentication mechanisms, Channel and Frequency in use etc. AP after receiving probe request, sends Probe response stating its Capabilities. Thus, final decision on association will be taken by STA only in this case. 
+
+Use case : During Roaming. Because, it might not listen to all channels available to get associated to any AP with same SSID (or even different - L3 roaming). Instead, it sends Probe request to current AP seeking help in getting list of neighboring APs and their capabilities and STA decides whether to accept the suggestion or not.
+
+2. Passive Scanning - a  process in which AP periodically broadcasts the Beacon frame in its BSS so that STA wants to get associated will listen to this frame stating APs capabilities and client will choose from the available APs and based on its requirement, it chooses one AP and sends authentication Request and further proceeds in getting associated with that AP.
+
+Use case : In conventional Wifi Access, Beaconing is only used.
+
+During Scanning, SSID (Service Set IDentifier - logical string used to identify the particular wireless service - not associated with single BSS might get extended to many BSS based on pre-configuration of VLAN. Basically, AP in any BSS maps SSID to VLAN. This SSID will be used to authorize the user what to do and not to do during authentication itself.), BSSID (Basic SSID - it is nothing but the MAC address of APs particular radio that forms BSS. Practically, each SSID in each BSS will have unique BSSID - helpful in roaming to identify AP), Data rate - This is given in the form of either DISABLED : will not be supported by APs or SUPPORTED : will be used if client is also ready to use or MANDATORY : Will be used by AP and forces client to do so , followed by channel setting, PHY setting; will be delivered by AP. Thus, all the possible capabilities of entities will be exchanged in this phase. 
+
+
+b. Authentication - It is the process by which security and encryption related settings (Open system authentication or shared key authentication) will be agreed and executed. Basically, in Wifi, WPA2 or WPA3 based authentication mechanisms are widely used. Happens after association. 
+
+Open Authentication is the one where there is no verification happens. Simply STA sends Auth Request and AP immediately accepts it by sending Auth Response. Prone to many security threats. Public wifi sources mainly used this. But nowadays, per session keys are developed and used in public Wifi. 
+
+In WPA2 - Pre shared key is used for encrypting messages. It follows EAPOL 4 way handshake for obtaining encryption key:
+
+1. AP initiates by sending ANonce - 256  bits
+2. STA calculates PMK from sent ANonce using PBKDF with MAC of both AP and Station and its own SNonce.
+3. With PMK, STA calculates PTK using Pseudo Random Function with some common parameters.
+4. STA extracts Message Integrity Code from PTK and sends both SNonce and MIC to AP (msg-2)
+5. AP now calculates the same PTK using SNonce and verifies it with the computed MIC and obtained MAC.
+6. AP now generates GTK (Group Transient Key) to encrypt optionally the broadcast and multicast messages with the help of PTK based encryption and sends to STA with MIC (msg-3)
+7. STA install the keys and final confirmation with verified MIC is sent back (msg-4)
+
+Based on this handshake, further communication (data payload) will be encrypted using PTK and GTK for security using AES-CCMP.
+
+It is prone to Offline dictionary attacks (Password guessing), replay attack (KRACK), No forward secrecy, Evil Twin Attacks.
+
+In WPA2 - Enterprise, 802.1X port based authentication is used with RADIUS Server. It treats STA as supplicant, AP as authenticator and has dedicated Server to authenticate. Since during association itself, negotiated capabilities are confirmed, AP begins this process by sending EAP Request identity to STA via captive portal asking credentials. AP as authenticator now forwards this request to RADIUS server once STA provides its credentials via EAP Response identity. Upon validation (there are many protocols to authenticate here), it sends Success/Rejection message via AP to STA. Thereby authentication or deauthentication happens. If successfully authenticated, after authorization (fixing limits to access network), accordingly the encryption key (PMK) will be delivered in secured manner which will then be used in 4 way handshake (instead of using common PMK).
+
+common methods in RADIUS server authentication:
+
+1. EAP-TLS (Extensible Authentication Protocol - Transport Layer Security): It is the advanced and widely used method in authentication by exchanging and verifying both STA and Server's certificates and then sending PMK
+
+2. EAP-TTLS (Tunneled TLS) - Here server certificate is used to form encrypted tunnel and inside which authentication occurs using user password. Similarly PEAP (Protected EAP) and  also relies on passwords.
+
+In WPA3 - SAE (Simultaneous Authentication of Equals) which is based on Dragon FLY Password Authenticated Key Exchange type. It works by agreeing on some global parameters and chooses random scalar and performs Elliptic Key cryptography. It is also used in Mesh networks.
+
+Here, at first, a Curve will be chosen (Finite cyclic group) and with the help of password, mac address, Password element is obtained which cannot be reverse engineered. with this, both parties chooses random scalar and exchanges commit elements (product of random scalar and element) now, both computes private secret key per session. it is ensured to be same because of properties. To confirm, both verifies common MIC and proceeds with 4 way handshake with the secret key to derive PTK and GTK
+
+
+c. Association : It is done to generate AID for further communications. If any device wants to get out the network, it sends dissociation or de authentication frame. Even AP if finds STA to be rogue or malicious device, it sends de-association frame. 
+
+d. Management plane also ensures Power management for STAs, Load balancing by MLO (Active or simultaneous), VLAN Segmentation and roaming optimization.
+
+
+
+Control plane : 
+
+	1. RTS
+	2. CTS
+	3. ACK / BlockACK
+	4. PS-Poll frame
+
+It mainly helps in controlling the access of the shared media by using RTS, CTS (which advertises NAV for virtual carrier sensing and also helps in avoiding Hidden and Exposed Node problem). ACK/BLOCKACK is helpful in ensuring whether packet reached recipient since wireless media collisions cannot be detected. PS-Poll frames are used by STAs in Power management scenario to retrieve buffered data from AP.
+
+
+Data plane:
+
+	1. Conventional payload
+	2. QoS Data frame
+	3. QoS Null frame (for indicating power management and channel sounding) 
