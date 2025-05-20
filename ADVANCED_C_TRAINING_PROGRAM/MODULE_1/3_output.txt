@@ -1,0 +1,11 @@
+Enter number of rows and columns: 3
+3
+Enter matrix elements (row-wise, sorted by row and column):
+1 2 3
+4 5 6
+7 8 9
+Enter the key to search: 5
+Key 5 found at position (1, 1)
+
+Process returned 0 (0x0)   execution time : 17.373 s
+Press any key to continue.

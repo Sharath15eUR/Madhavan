@@ -1,0 +1,56 @@
+Menu:
+1. Enter tasks
+2. Display tasks
+3. Exit
+Choose an option: 2
+Enter day to display tasks: Monday
+
+Details
+Day: Monday
+Number of tasks entered: 0
+Tasks:
+
+Menu:
+1. Enter tasks
+2. Display tasks
+3. Exit
+Choose an option: 1
+Enter day: Monday
+Till now 0 tasks entered out of 3
+How many new tasks do you want to enter? 5
+Sorry! That exceeds the limit of 3 tasks per day. Try again.
+
+Menu:
+1. Enter tasks
+2. Display tasks
+3. Exit
+Choose an option: 1
+Enter day: Monday
+Till now 0 tasks entered out of 3
+How many new tasks do you want to enter? 2
+Enter Task 1: Go to Market
+Enter Task 2: Study
+
+Menu:
+1. Enter tasks
+2. Display tasks
+3. Exit
+Choose an option: 2
+Enter day to display tasks: Monday
+
+Details
+Day: Monday
+Number of tasks entered: 2
+Tasks:
+- Go to Market
+- Study
+
+Menu:
+1. Enter tasks
+2. Display tasks
+3. Exit
+Choose an option: 3
+Exiting...
+
+Process returned 0 (0x0)   execution time : 60.198 s
+Press any key to continue.
